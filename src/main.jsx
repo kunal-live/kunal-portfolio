@@ -32,7 +32,7 @@ import signatureImg from "./assets/kunal-signature.png";
 import { projects } from "./data/projectsData";
 import { ProjectDetailPage } from "./components/ProjectDetailPage";
 
-const GITHUB = "https://github.com/kunal-gin";
+const GITHUB = "https://github.com/kunal-live";
 const PROFILE_IMAGE = heroImage;
 
 
@@ -736,7 +736,7 @@ function App() {
   };
 
   useEffect(() => {
-    fetch("https://api.github.com/users/kunal-gin")
+    fetch("https://api.github.com/users/kunal-live")
       .then(r => r.ok ? r.json() : null)
       .then(data => {
         if (data) setGithub({ repos: data.public_repos ?? 6, stars: 3 });
@@ -962,3 +962,4 @@ function App() {
 }
 
 createRoot(document.getElementById("root")).render(<App />);
+

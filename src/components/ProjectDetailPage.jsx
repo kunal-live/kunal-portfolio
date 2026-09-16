@@ -570,7 +570,7 @@ root@prod-api-01:~# sftp-sync --status
         <div>© 2026 Kunal Jha · Software Engineer</div>
         <div className="detail-footer-links">
           <a href="mailto:kunaljha8990@gmail.com">Email</a>
-          <a href="https://github.com/kunal-gin" target="_blank" rel="noreferrer">GitHub</a>
+          <a href="https://github.com/kunal-live" target="_blank" rel="noreferrer">GitHub</a>
           <a href="https://www.linkedin.com/in/kunal-jha-dev/" target="_blank" rel="noreferrer">LinkedIn</a>
           <a href="https://x.com/kunaljha67" target="_blank" rel="noreferrer">X (Twitter)</a>
         </div>
@@ -581,3 +581,4 @@ root@prod-api-01:~# sftp-sync --status
     </div>
   );
 }
+

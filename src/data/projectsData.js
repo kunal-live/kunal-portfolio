@@ -54,7 +54,7 @@ export const projects = [
     longDescription:
       "NexTerm re-imagines the developer and system administrator terminal experience into a cohesive desktop workspace. Powered by a native Go engine and Wails v2 bridging directly to OS-level PTYs and system keychains, it eliminates the clunky friction of switching between standalone SSH clients, separate SFTP transfer tools, and connection managers.",
     details: "Go · Wails v2 · xterm.js",
-    repo: "https://github.com/kunal-gin/NexTerm",
+    repo: "https://github.com/kunal-live/NexTerm",
     live: null,
     accent: "ink",
     visual: "terminal",
@@ -137,7 +137,7 @@ export const projects = [
     longDescription:
       "An enterprise-grade financial administration portal built to streamline corporate billing lifecycles, real-time e-invoicing compliance, automated tax audits, and payment reconciliations for recurring business accounts.",
     details: "React · Vite · JavaScript",
-    repo: "https://github.com/kunal-gin/brm-billing-operations-portal",
+    repo: "https://github.com/kunal-live/brm-billing-operations-portal",
     live: null,
     accent: "blue",
     visual: "billing",
@@ -191,7 +191,7 @@ export const projects = [
     longDescription:
       "SpendWise is a personal finance management system designed to make daily monetary tracking frictionless and visually insightful. Built with modern web standards, it provides real-time income vs. expense balance monitoring, automated savings rate calculations, categorized expenditure breakdowns, and a proprietary Financial Health scoring algorithm.",
     details: "Next.js · TypeScript · Supabase · Recharts · Cloudflare",
-    repo: "https://github.com/kunal-gin/SpendWise",
+    repo: "https://github.com/kunal-live/SpendWise",
     live: "https://spendwise.kunaljha8990.workers.dev/",
     accent: "purple",
     visual: "finance",
@@ -299,7 +299,7 @@ export const projects = [
     longDescription:
       "A complete digital retail experience focusing on fluid micro-interactions, responsive touch layouts, faceted search and inventory filtering, dynamic cart state management, and optimized checkout UX.",
     details: "React · Vite · JavaScript",
-    repo: "https://github.com/kunal-gin/Ecommerce-Website",
+    repo: "https://github.com/kunal-live/Ecommerce-Website",
     live: null,
     accent: "sand",
     visual: "commerce",
@@ -353,7 +353,7 @@ export const projects = [
     longDescription:
       "SentriX is a modern, high-performance infrastructure monitoring and fleet observability platform built for Linux servers and distributed clusters. Powered by a native C11 daemon delivering sub-10ms collection latency, a high-throughput Go ingestion pipeline, and TimescaleDB hypertable storage, SentriX replaces heavyweight legacy monitoring suites with a sleek, obsidian-glassmorphic real-time cockpit.",
     details: "C11 · Go · TimescaleDB · React · WebSockets",
-    repo: "https://github.com/kunal-gin/SentriX",
+    repo: "https://github.com/kunal-live/SentriX",
     live: null,
     accent: "orange",
     visual: "monitor",
@@ -444,7 +444,7 @@ export const projects = [
     longDescription:
       "Flux is an ultra-fast, local-first synchronization and peer-to-peer file replication protocol engineered in Go. Built around content-defined chunking (Rabin CDC), Merkle DAG state verification, and encrypted peer-to-peer gossip discovery, Flux safely propagates filesystem and data modifications across authorized workstations, edge nodes, and cloud instances without routing through centralized corporate servers.",
     details: "Go · P2P · Merkle DAG · Local-First",
-    repo: "https://github.com/kunal-gin/Flux",
+    repo: "https://github.com/kunal-live/Flux",
     live: null,
     accent: "emerald",
     visual: "sync",
@@ -489,3 +489,4 @@ export const projects = [
     ],
   },
 ];
+
