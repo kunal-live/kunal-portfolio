@@ -2206,65 +2206,68 @@ h2{font-size:clamp(38px,5vw,68px);line-height:.97;letter-spacing:-.065em;margin:
   stroke: white;
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-dasharray: 2000;
-  stroke-dashoffset: 2000;
   animation-fill-mode: forwards;
-  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  /* Natural pen feel: slow start, accelerate, slow stop */
+  animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1);
 }
 
 /* Wider stroke for letter bodies, narrower for flourish */
-.stroke-k-slash, .stroke-k-arms { stroke-width: 175; }
-.stroke-unal { stroke-width: 165; }
-.stroke-j { stroke-width: 180; }
-.stroke-ha { stroke-width: 165; }
-.stroke-flourish { stroke-width: 115; }
+.stroke-k-slash  { stroke-width: 175; stroke-dasharray: 420;  stroke-dashoffset: 420; }
+.stroke-k-arms   { stroke-width: 175; stroke-dasharray: 580;  stroke-dashoffset: 580; }
+.stroke-unal     { stroke-width: 165; stroke-dasharray: 950;  stroke-dashoffset: 950; }
+.stroke-j        { stroke-width: 180; stroke-dasharray: 1100; stroke-dashoffset: 1100; }
+.stroke-ha       { stroke-width: 165; stroke-dasharray: 1050; stroke-dashoffset: 1050; }
+.stroke-flourish { stroke-width: 115; stroke-dasharray: 1260; stroke-dashoffset: 1260; }
 
 /* Fully revealed state (settled / complete) */
 .mask-stroke.is-done {
   stroke-dashoffset: 0;
 }
 
-/* Sequential animation — each stroke draws in order */
+/* Sequential animation — each stroke draws in natural writing order */
 .mask-stroke.is-animating.stroke-k-slash {
-  animation-name: drawMaskStroke;
-  animation-duration: 0.7s;
-  animation-delay: 0.1s;
+  animation-name: drawKSlash;
+  animation-duration: 0.75s;
+  animation-delay: 0.15s;
 }
 
 .mask-stroke.is-animating.stroke-k-arms {
-  animation-name: drawMaskStroke;
-  animation-duration: 0.6s;
-  animation-delay: 0.8s;
+  animation-name: drawKArms;
+  animation-duration: 0.85s;
+  animation-delay: 0.9s;
 }
 
 .mask-stroke.is-animating.stroke-unal {
-  animation-name: drawMaskStroke;
-  animation-duration: 1.3s;
-  animation-delay: 1.4s;
+  animation-name: drawUnal;
+  animation-duration: 1.45s;
+  animation-delay: 1.75s;
 }
 
 .mask-stroke.is-animating.stroke-j {
-  animation-name: drawMaskStroke;
-  animation-duration: 1.1s;
-  animation-delay: 2.7s;
+  animation-name: drawJ;
+  animation-duration: 1.25s;
+  animation-delay: 3.2s;
 }
 
 .mask-stroke.is-animating.stroke-ha {
-  animation-name: drawMaskStroke;
-  animation-duration: 0.85s;
-  animation-delay: 3.8s;
+  animation-name: drawHa;
+  animation-duration: 1.0s;
+  animation-delay: 4.45s;
 }
 
 .mask-stroke.is-animating.stroke-flourish {
-  animation-name: drawMaskStroke;
-  animation-duration: 0.95s;
-  animation-delay: 4.65s;
+  animation-name: drawFlourish;
+  animation-duration: 1.1s;
+  animation-delay: 5.45s;
 }
 
-@keyframes drawMaskStroke {
-  from { stroke-dashoffset: 2000; }
-  to   { stroke-dashoffset: 0; }
-}
+/* Per-stroke keyframes matched to each path's dasharray length */
+@keyframes drawKSlash   { from { stroke-dashoffset: 420;  } to { stroke-dashoffset: 0; } }
+@keyframes drawKArms    { from { stroke-dashoffset: 580;  } to { stroke-dashoffset: 0; } }
+@keyframes drawUnal     { from { stroke-dashoffset: 950;  } to { stroke-dashoffset: 0; } }
+@keyframes drawJ        { from { stroke-dashoffset: 1100; } to { stroke-dashoffset: 0; } }
+@keyframes drawHa       { from { stroke-dashoffset: 1050; } to { stroke-dashoffset: 0; } }
+@keyframes drawFlourish { from { stroke-dashoffset: 1260; } to { stroke-dashoffset: 0; } }
 
 /* Motto Tagline: BUILD | LEARN | CREATE | GROW */
 .sig-motto {
@@ -2297,7 +2300,7 @@ h2{font-size:clamp(38px,5vw,68px);line-height:.97;letter-spacing:-.065em;margin:
 .signature-visual-wrap.is-signing .sig-motto {
   opacity: 0;
   transform: translateY(6px);
-  animation: revealMottoSlow 1s cubic-bezier(0.16, 1, 0.3, 1) 5.2s forwards;
+  animation: revealMottoSlow 1.2s cubic-bezier(0.16, 1, 0.3, 1) 6.1s forwards;
 }
 
 @keyframes revealMottoSlow {

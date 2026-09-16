@@ -301,7 +301,7 @@ $ tail -f /var/log/syslog
           </div>
           <div className="fulx-title-pill">
             <Layers size={11} />
-            <span>Fulx · Local-First P2P Replication Engine</span>
+            <span>Flux · Local-First P2P Replication Engine</span>
           </div>
           <span className="fulx-version-chip">UPCOMING · P2P</span>
         </div>
@@ -427,7 +427,7 @@ function AnimatedSignature() {
     setSigKey((k) => k + 1);
     setTimeout(() => {
       setIsSigning(false);
-    }, 6200);
+    }, 7200);
   };
 
   return (

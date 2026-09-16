@@ -434,17 +434,17 @@ export const projects = [
     ],
   },
   {
-    slug: "fulx",
+    slug: "flux",
     index: "06",
-    title: "Fulx",
+    title: "Flux",
     category: "SOON · DISTRIBUTED SYSTEMS",
     tagline: "High-Throughput Peer-to-Peer Data Replication & Local-First Sync Engine",
     description:
       "A lightweight, peer-to-peer data synchronization engine designed for cryptographic integrity verification, delta chunk streaming, and zero-conflict multi-device replication.",
     longDescription:
-      "Fulx is an ultra-fast, local-first synchronization and peer-to-peer file replication protocol engineered in Go. Built around content-defined chunking (Rabin CDC), Merkle DAG state verification, and encrypted peer-to-peer gossip discovery, Fulx safely propagates filesystem and data modifications across authorized workstations, edge nodes, and cloud instances without routing through centralized corporate servers.",
+      "Flux is an ultra-fast, local-first synchronization and peer-to-peer file replication protocol engineered in Go. Built around content-defined chunking (Rabin CDC), Merkle DAG state verification, and encrypted peer-to-peer gossip discovery, Flux safely propagates filesystem and data modifications across authorized workstations, edge nodes, and cloud instances without routing through centralized corporate servers.",
     details: "Go · P2P · Merkle DAG · Local-First",
-    repo: "https://github.com/kunal-gin/Fulx",
+    repo: "https://github.com/kunal-gin/Flux",
     live: null,
     accent: "emerald",
     visual: "sync",
@@ -460,7 +460,7 @@ export const projects = [
       { label: "Storage Model", value: "Local-First / Zero Cloud" },
     ],
     overview:
-      "Modern multi-device and edge workflows suffer from privacy concerns, latency, and vendor lock-in with centralized cloud storage. Fulx provides high-velocity, tamper-evident device-to-device replication operating directly over local LANs and private peer-to-peer encrypted tunnels.",
+      "Modern multi-device and edge workflows suffer from privacy concerns, latency, and vendor lock-in with centralized cloud storage. Flux provides high-velocity, tamper-evident device-to-device replication operating directly over local LANs and private peer-to-peer encrypted tunnels.",
     architecture:
       "Designed with an asynchronous actor model in Go. Files are partitioned into variable-sized content-defined chunks, hashed into a cryptographically verified Merkle tree, and synchronized through direct QUIC peer streams with conflict-free replicated data structures (CRDTs).",
     features: [
