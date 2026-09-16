@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import {
   Activity,
@@ -46,6 +46,159 @@ const skills = [
   ["SSH / SFTP", "Remote systems tooling"],
   ["Git / GitHub", "Version control & delivery"],
 ];
+
+/* ── Interactive Particle Network Background ──────────────────────────────── */
+function ParticleCanvas() {
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    let animId;
+    let mouse = { x: -9999, y: -9999 };
+
+    const PARTICLE_COUNT = 72;
+    const MAX_DIST = 145;
+    const MOUSE_RADIUS = 180;
+
+    // Read current theme
+    const isDark = () => document.documentElement.dataset.theme !== "light";
+
+    // Resize canvas to full viewport
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener("resize", resize);
+
+    // Pointer tracking
+    function onMouseMove(e) { mouse.x = e.clientX; mouse.y = e.clientY; }
+    function onMouseLeave()  { mouse.x = -9999; mouse.y = -9999; }
+    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("mouseleave", onMouseLeave);
+
+    // Build particles
+    const particles = Array.from({ length: PARTICLE_COUNT }, () => ({
+      x:  Math.random() * window.innerWidth,
+      y:  Math.random() * window.innerHeight,
+      vx: (Math.random() - 0.5) * 0.38,
+      vy: (Math.random() - 0.5) * 0.38,
+      r:  Math.random() * 1.6 + 0.8,
+      pulse: Math.random() * Math.PI * 2,
+    }));
+
+    function draw() {
+      const W = canvas.width;
+      const H = canvas.height;
+      const dark = isDark();
+
+      // Particle colors based on theme
+      const nodeColor   = dark ? "rgba(234,179,8,"  : "rgba(120,80,10,";
+      const lineColor   = dark ? "rgba(148,163,184," : "rgba(71,85,105,";
+      const accentColor = dark ? "rgba(250,204,21," : "rgba(161,98,7,";
+
+      ctx.clearRect(0, 0, W, H);
+
+      // Move particles
+      for (const p of particles) {
+        p.pulse += 0.018;
+        p.x += p.vx;
+        p.y += p.vy;
+        // Soft bounce
+        if (p.x < 0 || p.x > W) p.vx *= -1;
+        if (p.y < 0 || p.y > H) p.vy *= -1;
+
+        // Mouse repulsion (gentle push)
+        const dx = p.x - mouse.x;
+        const dy = p.y - mouse.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < MOUSE_RADIUS && dist > 0) {
+          const force = (MOUSE_RADIUS - dist) / MOUSE_RADIUS * 0.55;
+          p.vx += (dx / dist) * force;
+          p.vy += (dy / dist) * force;
+          // Speed cap
+          const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
+          if (speed > 2.2) { p.vx = (p.vx / speed) * 2.2; p.vy = (p.vy / speed) * 2.2; }
+        } else {
+          // Dampen back to cruising speed
+          p.vx *= 0.995;
+          p.vy *= 0.995;
+        }
+      }
+
+      // Draw connections
+      for (let i = 0; i < particles.length; i++) {
+        const a = particles[i];
+        for (let j = i + 1; j < particles.length; j++) {
+          const b = particles[j];
+          const dx = a.x - b.x;
+          const dy = a.y - b.y;
+          const d = Math.sqrt(dx * dx + dy * dy);
+          if (d < MAX_DIST) {
+            const alpha = (1 - d / MAX_DIST) * 0.32;
+            // Check mouse proximity for accent glow
+            const midX = (a.x + b.x) / 2;
+            const midY = (a.y + b.y) / 2;
+            const mx = midX - mouse.x;
+            const my = midY - mouse.y;
+            const mouseDist = Math.sqrt(mx * mx + my * my);
+            const isNearMouse = mouseDist < MOUSE_RADIUS;
+
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.strokeStyle = isNearMouse
+              ? `${accentColor}${(alpha * 1.8).toFixed(3)})`
+              : `${lineColor}${alpha.toFixed(3)})`;
+            ctx.lineWidth = isNearMouse ? 0.9 : 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Draw nodes
+      for (const p of particles) {
+        const pulse = 0.5 + Math.sin(p.pulse) * 0.5;
+        const dx = p.x - mouse.x;
+        const dy = p.y - mouse.y;
+        const nearMouse = Math.sqrt(dx * dx + dy * dy) < MOUSE_RADIUS;
+        const radius = nearMouse ? p.r * (1.8 + pulse * 0.5) : p.r * (1 + pulse * 0.25);
+        const alpha = nearMouse ? 0.85 : 0.35 + pulse * 0.25;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
+        ctx.fillStyle = nearMouse
+          ? `${accentColor}${alpha.toFixed(2)})`
+          : `${nodeColor}${alpha.toFixed(2)})`;
+        ctx.fill();
+
+        // Glow on mouse-near nodes
+        if (nearMouse) {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, radius * 3, 0, Math.PI * 2);
+          ctx.fillStyle = `${accentColor}${(alpha * 0.12).toFixed(3)})`;
+          ctx.fill();
+        }
+      }
+
+      animId = requestAnimationFrame(draw);
+    }
+
+    draw();
+
+    return () => {
+      cancelAnimationFrame(animId);
+      window.removeEventListener("resize", resize);
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("mouseleave", onMouseLeave);
+    };
+  }, []);
+
+  return <canvas ref={canvasRef} className="particle-canvas" aria-hidden="true" />;
+}
+
 
 function LogoMark() {
   return (
@@ -609,6 +762,7 @@ function App() {
 
   return (
     <div id="top">
+      <ParticleCanvas />
       <header className="site-header">
         <div className="nav-shell">
           <LogoMark />
