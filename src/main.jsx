@@ -31,6 +31,7 @@ import bottomAvatar from "./assets/avatar-bottom.jpg";
 import signatureImg from "./assets/kunal-signature.png";
 import { projects } from "./data/projectsData";
 import { ProjectDetailPage } from "./components/ProjectDetailPage";
+import { VisitorCounter } from "./components/VisitorCounter";
 
 const GITHUB = "https://github.com/kunal-live";
 const PROFILE_IMAGE = heroImage;
@@ -951,6 +952,10 @@ function App() {
           </div>
         </section>
       </main>
+
+      <div className="visitor-counter-wrapper">
+        <VisitorCounter />
+      </div>
 
       <footer className="site-footer">
         <div>© {year} Kunal Jha</div>

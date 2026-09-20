@@ -23,6 +23,7 @@ import {
   X,
   Zap,
 } from "lucide-react";
+import { VisitorCounter } from "./VisitorCounter";
 
 export function ProjectDetailPage({ project, allProjects, onBack, dark, onToggleTheme }) {
   const initialTab = project.gallery?.[0]?.id || (project.images?.dashboard ? "dashboard" : "multiexec");
@@ -564,6 +565,11 @@ root@prod-api-01:~# sftp-sync --status
           </div>
         </div>
       )}
+
+      {/* Visitor Counter */}
+      <div className="visitor-counter-wrapper">
+        <VisitorCounter />
+      </div>
 
       {/* Footer */}
       <footer className="detail-footer">

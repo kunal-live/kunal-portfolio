@@ -2463,4 +2463,186 @@ h2{font-size:clamp(38px,5vw,68px);line-height:.97;letter-spacing:-.065em;margin:
   }
 }
 
+/* ==========================================================================
+   Visitor Telemetry Counter Component
+   ========================================================================== */
+.visitor-counter-wrapper {
+  width: min(1180px, calc(100% - 44px));
+  margin: 36px auto 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 5;
+}
+
+.visitor-telemetry-badge {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 999px;
+  padding: 8px 18px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+:root[data-theme="dark"] .visitor-telemetry-badge {
+  background: color-mix(in srgb, var(--paper) 85%, transparent);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+  border-color: color-mix(in srgb, var(--line) 90%, transparent);
+}
+
+.visitor-telemetry-badge:hover {
+  transform: translateY(-2px);
+  border-color: var(--ink);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+:root[data-theme="dark"] .visitor-telemetry-badge:hover {
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45), 0 0 16px rgba(16, 185, 129, 0.15);
+  border-color: var(--ink);
+}
+
+.visitor-badge-inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.visitor-status-indicator {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.visitor-radar-core {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
+}
+
+.visitor-radar-ping.active {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #10b981;
+  opacity: 0.75;
+  animation: visitorPing 2.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes visitorPing {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  70%, 100% {
+    transform: scale(2.8);
+    opacity: 0;
+  }
+}
+
+.visitor-badge-icon {
+  color: var(--muted);
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
+.visitor-badge-text {
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: -0.01em;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  line-height: 1.4;
+}
+
+.visitor-number-pill {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-weight: 700;
+  font-size: 12.5px;
+  color: var(--ink);
+  background: var(--soft);
+  padding: 1px 7px;
+  border-radius: 6px;
+  border: 1px solid color-mix(in srgb, var(--line) 85%, transparent);
+  letter-spacing: 0.02em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.visitor-number-pill.skeleton {
+  color: transparent;
+  min-width: 38px;
+  background: linear-gradient(90deg, var(--soft) 25%, var(--line) 50%, var(--soft) 75%);
+  background-size: 200% 100%;
+  animation: visitorShimmer 1.5s infinite;
+}
+
+@keyframes visitorShimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.visitor-live-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.09);
+  border: 1px solid rgba(16, 185, 129, 0.28);
+  padding: 2px 7px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.live-spark {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #10b981;
+}
+
+@media (max-width: 600px) {
+  .visitor-counter-wrapper {
+    margin: 28px auto 10px;
+    width: min(100% - 28px, 1180px);
+  }
+  .visitor-telemetry-badge {
+    padding: 7px 14px;
+    width: 100%;
+    justify-content: center;
+  }
+  .visitor-badge-text {
+    font-size: 11px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+
 
