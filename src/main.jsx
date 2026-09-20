@@ -32,6 +32,12 @@ import signatureImg from "./assets/kunal-signature.png";
 import { projects } from "./data/projectsData";
 import { ProjectDetailPage } from "./components/ProjectDetailPage";
 import { VisitorCounter } from "./components/VisitorCounter";
+import { WorkPage } from "./components/WorkPage";
+import { StackPage } from "./components/StackPage";
+import { ExperiencePage } from "./components/ExperiencePage";
+import { ContactPage } from "./components/ContactPage";
+import { AboutPage } from "./components/AboutPage";
+import { AnimatedSignature } from "./components/AnimatedSignature";
 
 const GITHUB = "https://github.com/kunal-live";
 const PROFILE_IMAGE = heroImage;
@@ -201,9 +207,9 @@ function ParticleCanvas() {
 }
 
 
-function LogoMark() {
+function LogoMark({ onClick }) {
   return (
-    <a className="logo" href="#top" aria-label="Kunal Jha home">
+    <a className="logo" href="#top" onClick={onClick} aria-label="Kunal Jha home">
       KJ<span>.</span>
     </a>
   );
@@ -499,27 +505,32 @@ $ tail -f /var/log/syslog
   return null;
 }
 
-function ProjectCard({ project }) {
+function ProjectCard({ project, onSelect }) {
   const detailUrl = `?project=${project.slug}`;
+
+  const handleOpenDetail = (e) => {
+    if (onSelect && !e.metaKey && !e.ctrlKey && !e.shiftKey) {
+      e.preventDefault();
+      onSelect(project.slug);
+    }
+  };
 
   return (
     <article className={`project-card accent-${project.accent} ${project.featured ? "featured" : ""}`}>
       <a
         href={detailUrl}
-        target="_blank"
-        rel="noopener noreferrer"
+        onClick={handleOpenDetail}
         className="project-card-visual-link"
-        aria-label={`Open details for ${project.title} in a new tab`}
+        aria-label={`Open details for ${project.title}`}
       >
         <ProjectVisual project={project} />
       </a>
       <div className="project-card-body">
         <a
           href={detailUrl}
-          target="_blank"
-          rel="noopener noreferrer"
+          onClick={handleOpenDetail}
           className="project-card-copy-link"
-          aria-label={`Open details for ${project.title} in a new tab`}
+          aria-label={`Open details for ${project.title}`}
         >
           <div className="project-copy">
             <div className="project-meta">
@@ -571,135 +582,6 @@ function ProjectCard({ project }) {
   );
 }
 
-function AnimatedSignature() {
-  const [sigKey, setSigKey] = useState(0);
-  const [isSigning, setIsSigning] = useState(false);
-
-  const handleReplay = (e) => {
-    if (e) e.stopPropagation();
-    setIsSigning(true);
-    setSigKey((k) => k + 1);
-    setTimeout(() => {
-      setIsSigning(false);
-    }, 7200);
-  };
-
-  return (
-    <section className="signature-section" aria-label="Author Signature">
-      <div className="signature-container">
-        <div className="signature-ambient-glow" />
-
-        <div className="signature-header">
-          <div className="signature-badge">
-            <Sparkles size={13} className="sparkle-icon" />
-            <span>ENGINEERED WITH INTENT</span>
-          </div>
-          <button
-            type="button"
-            className="sig-replay-btn"
-            onClick={handleReplay}
-            title="Replay handwritten signature animation"
-            aria-label="Replay signature animation"
-          >
-            <RotateCcw size={12} className={isSigning ? "spinning" : ""} />
-            <span>{isSigning ? "Signing..." : "Replay Signature"}</span>
-          </button>
-        </div>
-
-        <div className="signature-card-transparent">
-          <div
-            key={sigKey}
-            className={`signature-visual-wrap ${isSigning ? "is-signing" : "is-settled"}`}
-            onClick={handleReplay}
-            title="Click anywhere to re-animate signature"
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") handleReplay(e); }}
-          >
-            {/* SVG mask reveals the actual signature image stroke-by-stroke, like real signing */}
-            <svg
-              key={`sig-${sigKey}`}
-              viewBox="0 0 1520 552"
-              className="signature-svg-reveal"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlnsXlink="http://www.w3.org/1999/xlink"
-              aria-label="Kunal Jha Signature"
-            >
-              <defs>
-                <mask id={`sigMask-${sigKey}`} maskUnits="userSpaceOnUse" x="-20" y="-20" width="1560" height="592">
-                  <rect x="-20" y="-20" width="1560" height="592" fill="black" />
-                  {/* Mask strokes animate: white = revealed, black = hidden */}
-                  {/* 1. K stem slash */}
-                  <path
-                    className={`mask-stroke stroke-k-slash ${isSigning ? "is-animating" : "is-done"}`}
-                    d="M 47,498 C 100,390 200,280 304,143"
-                  />
-                  {/* 2. K arms upper + lower */}
-                  <path
-                    className={`mask-stroke stroke-k-arms ${isSigning ? "is-animating" : "is-done"}`}
-                    d="M 230,270 C 275,220 310,185 390,160 M 230,275 C 270,330 300,390 320,445 C 340,475 375,420 395,390"
-                  />
-                  {/* 3. unal cursive flow */}
-                  <path
-                    className={`mask-stroke stroke-unal ${isSigning ? "is-animating" : "is-done"}`}
-                    d="M 395,390 C 420,355 445,335 460,365 C 475,395 490,395 505,365 C 520,340 540,340 555,370 C 568,395 585,395 598,368 C 612,340 630,340 645,368 C 660,395 680,395 695,365 C 710,335 735,215 750,180 C 762,162 772,180 762,225 C 745,305 752,390 785,390"
-                  />
-                  {/* 4. J grand descending loop */}
-                  <path
-                    className={`mask-stroke stroke-j ${isSigning ? "is-animating" : "is-done"}`}
-                    d="M 825,200 C 875,145 920,100 949,102 C 968,112 958,155 935,235 C 900,345 848,468 780,532 C 748,562 728,528 748,475 C 768,422 828,368 920,345 C 958,328 990,342 1010,350"
-                  />
-                  {/* 5. ha */}
-                  <path
-                    className={`mask-stroke stroke-ha ${isSigning ? "is-animating" : "is-done"}`}
-                    d="M 1010,350 C 1038,255 1052,145 1060,90 C 1068,58 1082,68 1078,112 C 1068,185 1062,305 1068,395 C 1080,355 1108,332 1134,332 C 1158,332 1168,368 1182,392 C 1198,368 1218,355 1240,368 C 1260,378 1265,398 1285,398 C 1315,398 1370,375 1440,355"
-                  />
-                  {/* 6. Flourish underline sweep */}
-                  <path
-                    className={`mask-stroke stroke-flourish ${isSigning ? "is-animating" : "is-done"}`}
-                    d="M 260,465 C 460,432 740,408 1045,392 C 1200,386 1362,376 1468,334"
-                  />
-                </mask>
-              </defs>
-              {/* The actual signature image, revealed through the animated mask */}
-              <image
-                href={signatureImg}
-                x="0" y="0"
-                width="1520" height="552"
-                mask={`url(#sigMask-${sigKey})`}
-                preserveAspectRatio="xMidYMid meet"
-              />
-            </svg>
-
-            <div className={`sig-motto ${isSigning ? "is-signing" : "is-settled"}`}>
-              <span>BUILD</span>
-              <span className="motto-divider">|</span>
-              <span>LEARN</span>
-              <span className="motto-divider">|</span>
-              <span>CREATE</span>
-              <span className="motto-divider">|</span>
-              <span>GROW</span>
-            </div>
-
-            <div className="signature-hover-hint">
-              <RotateCcw size={11} className={isSigning ? "spinning" : ""} />
-              <span>{isSigning ? "Signing..." : "Click to Re-sign"}</span>
-            </div>
-          </div>
-        </div>
-
-        <div className="signature-footer-bar">
-          <div className="sig-author-info">
-            <strong>Kunal Jha</strong>
-            <span>Software Engineer · Systems, Architecture & Product Engineering</span>
-          </div>
-          <span className="signature-meta-chip">AUTHENTIC CRAFT · 2026</span>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function App() {
   const [dark, setDark] = useState(() => {
     const saved = localStorage.getItem("kj_theme");
@@ -711,6 +593,9 @@ function App() {
   const [activeProjectSlug, setActiveProjectSlug] = useState(() => {
     return new URLSearchParams(window.location.search).get("project");
   });
+  const [activePage, setActivePage] = useState(() => {
+    return new URLSearchParams(window.location.search).get("page") || null;
+  });
 
   useEffect(() => {
     document.documentElement.dataset.theme = dark ? "dark" : "light";
@@ -719,7 +604,9 @@ function App() {
 
   useEffect(() => {
     const onPopState = () => {
-      setActiveProjectSlug(new URLSearchParams(window.location.search).get("project"));
+      const params = new URLSearchParams(window.location.search);
+      setActiveProjectSlug(params.get("project"));
+      setActivePage(params.get("page") || null);
     };
     window.addEventListener("popstate", onPopState);
     return () => window.removeEventListener("popstate", onPopState);
@@ -730,10 +617,33 @@ function App() {
     return projects.find((p) => p.slug === activeProjectSlug) || null;
   }, [activeProjectSlug]);
 
+  const navigateToPage = (pageKey, e) => {
+    if (e) e.preventDefault();
+    setMenuOpen(false);
+    setActiveProjectSlug(null);
+    if (pageKey) {
+      window.history.pushState({}, "", `?page=${pageKey}`);
+      setActivePage(pageKey);
+    } else {
+      window.history.pushState({}, "", window.location.pathname);
+      setActivePage(null);
+    }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleSelectProject = (slug) => {
+    window.history.pushState({}, "", `?project=${slug}`);
+    setActiveProjectSlug(slug);
+    setActivePage(null);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   const handleBackToPortfolio = (e) => {
     if (e) e.preventDefault();
     window.history.pushState({}, "", window.location.pathname);
     setActiveProjectSlug(null);
+    setActivePage(null);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -766,19 +676,49 @@ function App() {
       <ParticleCanvas />
       <header className="site-header">
         <div className="nav-shell">
-          <LogoMark />
+          <LogoMark onClick={(e) => navigateToPage(null, e)} />
           <nav className={menuOpen ? "mobile-open" : ""}>
-            <a href="#about" onClick={closeMenu}>About</a>
-            <a href="#work" onClick={closeMenu}>Work</a>
-            <a href="#stack" onClick={closeMenu}>Stack</a>
-            <a href="#experience" onClick={closeMenu}>Experience</a>
-            <a href="#contact" onClick={closeMenu}>Contact</a>
+            <a
+              href="#about"
+              className={activePage === "about" ? "active-nav-link" : ""}
+              onClick={(e) => navigateToPage("about", e)}
+            >
+              About
+            </a>
+            <a
+              href="#work"
+              className={activePage === "work" ? "active-nav-link" : ""}
+              onClick={(e) => navigateToPage("work", e)}
+            >
+              Work
+            </a>
+            <a
+              href="#stack"
+              className={activePage === "stack" ? "active-nav-link" : ""}
+              onClick={(e) => navigateToPage("stack", e)}
+            >
+              Stack
+            </a>
+            <a
+              href="#experience"
+              className={activePage === "experience" ? "active-nav-link" : ""}
+              onClick={(e) => navigateToPage("experience", e)}
+            >
+              Experience
+            </a>
+            <a
+              href="#contact"
+              className={activePage === "contact" ? "active-nav-link" : ""}
+              onClick={(e) => navigateToPage("contact", e)}
+            >
+              Contact
+            </a>
           </nav>
           <div className="header-actions">
             <button className="icon-btn" onClick={() => setDark(v => !v)} aria-label="Toggle theme">
               {dark ? <Sun size={17}/> : <Moon size={17}/>}
             </button>
-            <a className="top-cta" href="#contact">Let's talk <ArrowUpRight size={15}/></a>
+            <a className="top-cta" href="#contact" onClick={(e) => navigateToPage("contact", e)}>Let's talk <ArrowUpRight size={15}/></a>
             <button className="icon-btn menu-btn" onClick={() => setMenuOpen(v => !v)} aria-label="Open menu">
               {menuOpen ? <X size={19}/> : <Menu size={19}/>}
             </button>
@@ -786,90 +726,118 @@ function App() {
         </div>
       </header>
 
-      <main>
-        <section className="hero">
-          <div className="hero-left">
-            <div className="eyebrow"><span className="status-dot"/> Available for select engineering work</div>
-            <h1>Software that works <em>under pressure.</em></h1>
-            <p className="hero-copy">
-              I’m <strong>Kunal Jha</strong> — a <strong>Software Engineer</strong>{" "}
-              building backend systems, developer tools, and products that solve concrete problems.
-            </p>
-            <div className="hero-actions">
-              <a className="black-btn" href="#work">View selected work <ArrowDownRight size={17}/></a>
-              <a className="text-btn" href={GITHUB} target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={16}/></a>
-            </div>
-            <div className="hero-stats">
-              <div><b>{github.repos}+</b><span>public repositories</span></div>
-              <div><b>5</b><span>featured projects</span></div>
-              <div><b>SWE</b><span>software engineer</span></div>
-            </div>
-          </div>
-
-          <div className="hero-portrait-wrap">
-            <div className="portrait-ring"/>
-            <div className="portrait-card">
-              <img src={PROFILE_IMAGE} alt="Kunal Jha" />
-              <div className="portrait-tag"><TerminalSquare size={15}/><span>BUILD / SHIP / ITERATE</span></div>
-            </div>
-            <div className="orbit orbit-one"/>
-            <div className="orbit orbit-two"/>
-            <div className="portrait-note"><small>BASED IN</small><b>Pune, India</b></div>
-          </div>
-        </section>
-
-        <section className="ticker" aria-label="Technology ticker">
-          {["SOFTWARE ENGINEER", "SYSTEMS", "REACT", "JAVA", "C", "GO", "SQL", "SSH / SFTP"].map((x, i) => (
-            <React.Fragment key={x}>
-              <span>{x}</span>{i < 7 && <i>•</i>}
-            </React.Fragment>
-          ))}
-        </section>
-
-        <section id="about" className="section about-section">
-          <div className="section-label">01 / ABOUT</div>
-          <div className="section-content about-grid">
-            <div>
-              <h2>Bridging robust systems engineering with modern, <em>responsive products.</em></h2>
-            </div>
-            <div className="about-body">
-              <p>
-                My professional work is centered on Software Engineering and scalable backend systems,
-                while my independent work spans systems programming, remote infrastructure tooling,
-                finance products and React interfaces.
-              </p>
-              <p>
-                That combination shapes how I build: start from the underlying system,
-                define reliable state and interfaces, then make the workflow fast and obvious for the person using it.
-              </p>
-              <p>
-                My next product direction is <strong>SentriX</strong> — a server-health monitoring system built
-                to turn low-level machine signals into an operational dashboard engineers can act on.
-              </p>
-              <div className="about-links">
-                <a href="https://www.linkedin.com/in/kunal-jha-dev/" target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight size={15}/></a>
-                <a href="https://x.com/kunaljha67" target="_blank" rel="noreferrer">X / Twitter <ArrowUpRight size={15}/></a>
-                <a href="https://www.instagram.com/still.by.kunal/" target="_blank" rel="noreferrer">Instagram <ArrowUpRight size={15}/></a>
+      {activePage === "work" ? (
+        <WorkPage
+          onSelectProject={handleSelectProject}
+          onBack={handleBackToPortfolio}
+          GITHUB={GITHUB}
+        />
+      ) : activePage === "stack" ? (
+        <StackPage
+          onBack={handleBackToPortfolio}
+          GITHUB={GITHUB}
+        />
+      ) : activePage === "experience" ? (
+        <ExperiencePage
+          onBack={handleBackToPortfolio}
+          GITHUB={GITHUB}
+        />
+      ) : activePage === "contact" ? (
+        <ContactPage
+          onBack={handleBackToPortfolio}
+          GITHUB={GITHUB}
+        />
+      ) : activePage === "about" ? (
+        <AboutPage
+          onBack={handleBackToPortfolio}
+          GITHUB={GITHUB}
+        />
+      ) : (
+        <>
+          <main>
+            <section className="hero">
+              <div className="hero-left">
+                <div className="eyebrow"><span className="status-dot"/> Available for select engineering work</div>
+                <h1>Software that works <em>under pressure.</em></h1>
+                <p className="hero-copy">
+                  I’m <strong>Kunal Jha</strong> — a <strong>Software Engineer</strong>{" "}
+                  building backend systems, developer tools, and products that solve concrete problems.
+                </p>
+                <div className="hero-actions">
+                  <a className="black-btn" href="#work" onClick={(e) => navigateToPage("work", e)}>View selected work <ArrowDownRight size={17}/></a>
+                  <a className="text-btn" href={GITHUB} target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={16}/></a>
+                </div>
+                <div className="hero-stats">
+                  <div><b>{github.repos}+</b><span>public repositories</span></div>
+                  <div><b>5</b><span>featured projects</span></div>
+                  <div><b>SWE</b><span>software engineer</span></div>
+                </div>
               </div>
-            </div>
-          </div>
-        </section>
 
-        <section id="work" className="section work-section">
-          <div className="section-label">02 / SELECTED WORK</div>
-          <div className="section-content">
-            <div className="section-intro">
-              <div>
-                <h2>Projects with a reason to exist.</h2>
-                <p>Current public work from my GitHub profile, plus SentriX — the server-health monitoring product I’m taking into the next build phase.</p>
+              <div className="hero-portrait-wrap">
+                <div className="portrait-ring"/>
+                <div className="portrait-card">
+                  <img src={PROFILE_IMAGE} alt="Kunal Jha" />
+                  <div className="portrait-tag"><TerminalSquare size={15}/><span>BUILD / SHIP / ITERATE</span></div>
+                </div>
+                <div className="orbit orbit-one"/>
+                <div className="orbit orbit-two"/>
+                <div className="portrait-note"><small>BASED IN</small><b>Pune, India</b></div>
               </div>
-              <a className="outline-btn" href={GITHUB} target="_blank" rel="noreferrer">Browse all repositories <ArrowUpRight size={16}/></a>
-            </div>
-            <div className="project-grid">
-              {projects.map(p => <ProjectCard key={p.title} project={p}/>)}
-            </div>
-          </div>
-        </section>
+            </section>
+
+            <section className="ticker" aria-label="Technology ticker">
+              {["SOFTWARE ENGINEER", "SYSTEMS", "REACT", "JAVA", "C", "GO", "SQL", "SSH / SFTP"].map((x, i) => (
+                <React.Fragment key={x}>
+                  <span>{x}</span>{i < 7 && <i>•</i>}
+                </React.Fragment>
+              ))}
+            </section>
+
+            <section id="about" className="section about-section">
+              <div className="section-label">01 / ABOUT</div>
+              <div className="section-content about-grid">
+                <div>
+                  <h2>Bridging robust systems engineering with modern, <em>responsive products.</em></h2>
+                </div>
+                <div className="about-body">
+                  <p>
+                    My professional work is centered on Software Engineering and scalable backend systems,
+                    while my independent work spans systems programming, remote infrastructure tooling,
+                    finance products and React interfaces.
+                  </p>
+                  <p>
+                    That combination shapes how I build: start from the underlying system,
+                    define reliable state and interfaces, then make the workflow fast and obvious for the person using it.
+                  </p>
+                  <p>
+                    My next product direction is <strong>SentriX</strong> — a server-health monitoring system built
+                    to turn low-level machine signals into an operational dashboard engineers can act on.
+                  </p>
+                  <div className="about-links">
+                    <a href="https://www.linkedin.com/in/kunal-jha-dev/" target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight size={15}/></a>
+                    <a href="https://x.com/kunaljha67" target="_blank" rel="noreferrer">X / Twitter <ArrowUpRight size={15}/></a>
+                    <a href="https://www.instagram.com/still.by.kunal/" target="_blank" rel="noreferrer">Instagram <ArrowUpRight size={15}/></a>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section id="work" className="section work-section">
+              <div className="section-label">02 / SELECTED WORK</div>
+              <div className="section-content">
+                <div className="section-intro">
+                  <div>
+                    <h2>Projects with a reason to exist.</h2>
+                    <p>Current public work from my GitHub profile, plus SentriX — the server-health monitoring product I’m taking into the next build phase.</p>
+                  </div>
+                  <a className="outline-btn" href="#work" onClick={(e) => navigateToPage("work", e)}>Browse all projects & architecture <ArrowUpRight size={16}/></a>
+                </div>
+                <div className="project-grid">
+                  {projects.map(p => <ProjectCard key={p.title} project={p} onSelect={handleSelectProject} />)}
+                </div>
+              </div>
+            </section>
 
         <section id="stack" className="section stack-section">
           <div className="section-label">03 / STACK</div>
@@ -962,6 +930,8 @@ function App() {
         <SocialLinks/>
         <div className="footer-right">Software Engineer</div>
       </footer>
+        </>
+      )}
     </div>
   );
 }
