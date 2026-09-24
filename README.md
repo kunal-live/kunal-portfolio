@@ -13,9 +13,10 @@ A modern, high-performance developer portfolio built with React and Vite, featur
   - **SpendWise**: Cloudflare Workers + React expense and budget tracker.
   - **BRM Billing Operations Portal**: Oracle BRM enterprise invoice & billing workflow system.
   - **Ecommerce Storefront**: Modern shoe e-commerce clone with shopping cart and product filtering.
+- **Live Domain**: [https://kunaljha.online](https://kunaljha.online)
 - **Contact & Connect**:
   - Direct Email: [kunaljha8990@gmail.com](mailto:kunaljha8990@gmail.com)
-  - GitHub: [@kunal-gin](https://github.com/kunal-gin)
+  - GitHub: [@kunal-live](https://github.com/kunal-live)
   - LinkedIn: [kunal-jha-dev](https://www.linkedin.com/in/kunal-jha-dev/)
 
 ---
