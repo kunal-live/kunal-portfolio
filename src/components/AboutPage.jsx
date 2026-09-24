@@ -7,6 +7,7 @@ import {
   Cpu,
   Github,
   HeartHandshake,
+  Home,
   Layers,
   Linkedin,
   MapPin,
@@ -46,9 +47,9 @@ export function AboutPage({ onBack, GITHUB = "https://github.com/kunal-live" }) 
       {/* Subpage Hero Header */}
       <section className="subpage-hero">
         <div className="subpage-nav-bar">
-          <button className="subpage-back-btn" onClick={onBack} aria-label="Return to overview">
-            <ArrowLeft size={16} />
-            <span>Overview</span>
+          <button className="subpage-back-btn" onClick={onBack} aria-label="Return to home page" title="Return to home page">
+            <Home size={15} />
+            <span>Home</span>
           </button>
           <span className="subpage-breadcrumb-separator">/</span>
           <span className="subpage-current-crumb">About Kunal Jha</span>
@@ -116,11 +117,12 @@ export function AboutPage({ onBack, GITHUB = "https://github.com/kunal-live" }) 
             </div>
 
             <div className="story-paragraph-block">
-              <h2>Next Horizon: SentriX & Beyond</h2>
+              <h2>Next Horizon: Flux & Beyond</h2>
               <p>
-                My current product direction is <strong>SentriX</strong> — an obsidian-aesthetic server health and fleet
-                monitoring cockpit engineered to replace clunky legacy observability tools with sub-10ms native C11 collection,
-                Go ingestion pipelines, and TimescaleDB hypertable storage.
+                My current product direction is <strong>Flux</strong> — a zero-install, cross-platform nearby P2P file sharing
+                protocol engineered in Go with WebRTC DataChannels, direct-to-disk streaming via the File System Access API,
+                and incremental SHA-256 integrity verification. Designed around zero cloud relays and cross-device mesh discovery,
+                Flux bridges the walled-garden gap across Windows, macOS, Linux, iOS, and Android without requiring app installations.
               </p>
               <p>
                 I believe software engineering is at its best when it delivers practical utility without unnecessary abstractions.

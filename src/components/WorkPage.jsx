@@ -7,6 +7,7 @@ import {
   Filter,
   Github,
   Globe2,
+  Home,
   Layers,
   Sparkles,
   TerminalSquare,
@@ -14,6 +15,7 @@ import {
 } from "lucide-react";
 import { projects } from "../data/projectsData";
 import { VisitorCounter } from "./VisitorCounter";
+import { FluxMeshVisual } from "./FluxMeshVisual";
 
 export function WorkPage({ onSelectProject, onBack, GITHUB = "https://github.com/kunal-live" }) {
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -64,9 +66,9 @@ export function WorkPage({ onSelectProject, onBack, GITHUB = "https://github.com
       {/* Subpage Hero Header */}
       <section className="subpage-hero">
         <div className="subpage-nav-bar">
-          <button className="subpage-back-btn" onClick={onBack} aria-label="Return to overview">
-            <ArrowLeft size={16} />
-            <span>Overview</span>
+          <button className="subpage-back-btn" onClick={onBack} aria-label="Return to home page" title="Return to home page">
+            <Home size={15} />
+            <span>Home</span>
           </button>
           <span className="subpage-breadcrumb-separator">/</span>
           <span className="subpage-current-crumb">Work & Selected Systems</span>
@@ -156,6 +158,10 @@ export function WorkPage({ onSelectProject, onBack, GITHUB = "https://github.com
                       className="work-preview-image"
                       loading="lazy"
                     />
+                  ) : project.visual === "sync" ? (
+                    <div className="work-flux-embed">
+                      <FluxMeshVisual isDetailed={false} />
+                    </div>
                   ) : (
                     <div className="work-card-fallback-visual">
                       <TerminalSquare size={42} />

@@ -13,6 +13,10 @@ import sentrixOverview from "../assets/sentrix-overview.png";
 import sentrixTelemetry from "../assets/sentrix-telemetry.png";
 import sentrixIncidents from "../assets/sentrix-incidents.png";
 import sentrixArchitecture from "../assets/sentrix-architecture.png";
+import fluxDashboard from "../assets/flux-dashboard.png";
+import fluxSend from "../assets/flux-send.png";
+import fluxPairing from "../assets/flux-pairing.png";
+import fluxSettings from "../assets/flux-settings.png";
 
 export const projects = [
   {
@@ -435,57 +439,102 @@ export const projects = [
   },
   {
     slug: "flux",
+    images: {
+      dashboard: fluxDashboard,
+      send: fluxSend,
+      pairing: fluxPairing,
+      settings: fluxSettings,
+    },
+    gallery: [
+      {
+        id: "dashboard",
+        label: "🏠 Home",
+        title: "Flux Home — Real-Time Peer Mesh Radar & Nearby Discovery",
+        desc: "Interactive capability-based device radar discovering nearby peer nodes (MacBook Pro, iPhone 15, Office PC, Linux Machine) and live multi-file transfers with zero cloud relays.",
+        src: fluxDashboard,
+      },
+      {
+        id: "send",
+        label: "📤 Send Files",
+        title: "Direct P2P File & Folder Dispatcher",
+        desc: "Drag-and-drop batch file and folder dispatcher with automatic adaptive chunk sizing, backpressure flow control, and one-click destination targeting.",
+        src: fluxSend,
+      },
+      {
+        id: "pairing",
+        label: "⚡ Code & QR Pairing",
+        title: "Cross-Network QR & Short-Code Pairing",
+        desc: "Dynamic QR code and 6-character short code generator enabling peer connections across different subnets, NATs, and private networks.",
+        src: fluxPairing,
+      },
+      {
+        id: "settings",
+        label: "⚙️ Engine Preferences",
+        title: "Device Capabilities & WebRTC Configuration",
+        desc: "Device alias management, dual appearance themes, Direct WebRTC DataChannels, File System Access API disk streaming, and STUN endpoint configurations.",
+        src: fluxSettings,
+      },
+    ],
     index: "06",
     title: "Flux",
-    category: "SOON · DISTRIBUTED SYSTEMS",
-    tagline: "High-Throughput Peer-to-Peer Data Replication & Local-First Sync Engine",
+    category: "P2P SYSTEMS · NETWORKING",
+    tagline: "Zero-Install Cross-Platform Nearby P2P File Sharing & Device Mesh",
     description:
-      "A lightweight, peer-to-peer data synchronization engine designed for cryptographic integrity verification, delta chunk streaming, and zero-conflict multi-device replication.",
+      "Zero-install, cross-platform nearby file sharing. Open a URL, discover nearby devices over an interactive mesh radar, and transfer files device-to-device at native wire speed without uploading to the cloud.",
     longDescription:
-      "Flux is an ultra-fast, local-first synchronization and peer-to-peer file replication protocol engineered in Go. Built around content-defined chunking (Rabin CDC), Merkle DAG state verification, and encrypted peer-to-peer gossip discovery, Flux safely propagates filesystem and data modifications across authorized workstations, edge nodes, and cloud instances without routing through centralized corporate servers.",
-    details: "Go · P2P · Merkle DAG · Local-First",
+      "Flux re-imagines cross-platform file transfers into an instantaneous, browser-driven local-first experience. Powered by a high-performance Go control-plane daemon (100% standard library) with embedded web assets, Flux pairs devices automatically through capability discovery or dynamic QR/6-character codes. Files transfer directly peer-to-peer via WebRTC DataChannels with adaptive chunk sizing, backpressure flow control, and streaming directly to disk via the File System Access API with incremental SHA-256 integrity verification.",
+    details: "Go · WebRTC · P2P · File System API · PWA",
     repo: "https://github.com/kunal-live/Flux",
     live: null,
     accent: "emerald",
     visual: "sync",
-    soon: true,
-    featured: false,
-    status: "Upcoming Release",
+    soon: false,
+    featured: true,
+    status: "Active Development · v4 MVP",
     year: "2026",
-    role: "Distributed Systems Architect",
+    role: "Lead Systems & Distributed Protocol Architect",
     metrics: [
-      { label: "Topology", value: "Decentralized P2P Mesh" },
-      { label: "Chunking Algorithm", value: "Rabin CDC + Merkle DAG" },
-      { label: "Transport Security", value: "Mutual TLS / QUIC" },
-      { label: "Storage Model", value: "Local-First / Zero Cloud" },
+      { label: "Transport Layer", value: "Direct WebRTC DataChannel" },
+      { label: "Control Plane", value: "Pure Go Stdlib (Zero Deps)" },
+      { label: "Disk Streaming", value: "File System Access API" },
+      { label: "Integrity", value: "Incremental SHA-256 Verified" },
     ],
     overview:
-      "Modern multi-device and edge workflows suffer from privacy concerns, latency, and vendor lock-in with centralized cloud storage. Flux provides high-velocity, tamper-evident device-to-device replication operating directly over local LANs and private peer-to-peer encrypted tunnels.",
+      "AirDrop only works within Apple's ecosystem, while cloud drives force gigabytes of private data onto corporate servers only to download them right back onto a nearby machine. Flux bridges this gap: a zero-install, truly cross-platform peer-to-peer sharing system that works instantaneously across Windows, macOS, Linux, Android, and iOS directly within any modern browser.",
     architecture:
-      "Designed with an asynchronous actor model in Go. Files are partitioned into variable-sized content-defined chunks, hashed into a cryptographically verified Merkle tree, and synchronized through direct QUIC peer streams with conflict-free replicated data structures (CRDTs).",
+      "Engineered with a lean Go control-plane hub handling lightweight WebSocket signaling, presence broadcasting, and fallback relaying. Peers exchange binary frames directly over encrypted WebRTC DataChannels with bounded in-flight windows to prevent memory bloat on multi-gigabyte payloads. File streams are piped directly into disk storage using the browser's File System Access API, with cryptographic SHA-256 integrity checked on both endpoints.",
     features: [
       {
-        title: "Content-Defined Chunking & Deduplication",
-        desc: "Variable-length Rabin chunking ensuring minimal bandwidth consumption by only transferring byte deltas across devices.",
+        title: "Capability-Based Mesh Discovery",
+        desc: "Devices in the same network discover each other with zero manual configuration; each advertises platform metadata and streaming capabilities dynamically.",
       },
       {
-        title: "Cryptographic Merkle DAG Integrity",
-        desc: "Continuous state hashing preventing corrupted transfers, replay attacks, or unauthorized state alteration.",
+        title: "Direct P2P DataChannel Transfers",
+        desc: "High-throughput binary chunked transfers with adaptive sizing and backpressure flow control, completely bypassing cloud relays.",
       },
       {
-        title: "Peer-to-Peer Mesh Discovery",
-        desc: "mDNS for zero-config local LAN device pairing and distributed hash tables (DHT) for encrypted WAN routing.",
+        title: "Dynamic QR & Short-Code Pairing",
+        desc: "Seamless cross-network and WAN pairing using dynamic QR codes and 6-character short codes when devices are on disparate subnets.",
       },
       {
-        title: "Zero-Knowledge End-to-End Encryption",
-        desc: "Full wire and storage encryption using ChaCha20-Poly1305, ensuring even intermediary relay nodes have zero plaintext visibility.",
+        title: "Direct-to-Disk Streaming & Flat Memory",
+        desc: "Streams multi-gigabyte payloads directly into the local filesystem via the File System Access API without RAM spikes.",
+      },
+      {
+        title: "Zero-Dependency Go Server Core",
+        desc: "Compiles into a single standalone static Go binary with embedded web assets, zero third-party dependencies, and native /healthz and /metrics endpoints.",
+      },
+      {
+        title: "Installable Offline PWA",
+        desc: "Progressive Web App with Service Worker caching enabling offline launching and native-app feel across desktop and mobile.",
       },
     ],
     stack: [
-      { name: "Go (Golang)", role: "Core P2P daemon, Merkle tree calculation, and concurrency orchestration" },
-      { name: "libp2p & QUIC", role: "Multiplexed encrypted transport, NAT traversal, and peer discovery" },
-      { name: "BadgerDB", role: "High-performance embedded key-value metadata index" },
-      { name: "CRDT Engine", role: "Conflict-free state resolution and multi-master convergence" },
+      { name: "Go (Golang)", role: "Control-plane signaling hub, binary relay fallback, and embedded web bundle" },
+      { name: "WebRTC DataChannel", role: "Direct encrypted peer-to-peer binary transport with adaptive message sizing" },
+      { name: "File System Access API", role: "Direct-to-disk streaming for multi-gigabyte payloads with flat memory footprint" },
+      { name: "Web Crypto API", role: "Real-time incremental SHA-256 chunk hashing and end-to-end integrity validation" },
+      { name: "Service Worker & PWA", role: "Offline application shell caching and cross-platform installation" },
     ],
   },
 ];

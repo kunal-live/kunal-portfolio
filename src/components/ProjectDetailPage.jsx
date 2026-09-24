@@ -11,6 +11,7 @@ import {
   ExternalLink,
   Github,
   Globe2,
+  Home,
   Layers,
   Linkedin,
   Maximize2,
@@ -24,6 +25,7 @@ import {
   Zap,
 } from "lucide-react";
 import { VisitorCounter } from "./VisitorCounter";
+import { FluxMeshVisual } from "./FluxMeshVisual";
 
 export function ProjectDetailPage({ project, allProjects, onBack, dark, onToggleTheme }) {
   const initialTab = project.gallery?.[0]?.id || (project.images?.dashboard ? "dashboard" : "multiexec");
@@ -70,9 +72,9 @@ export function ProjectDetailPage({ project, allProjects, onBack, dark, onToggle
       <header className="detail-header">
         <div className="detail-header-inner">
           <div className="detail-nav-left">
-            <button className="back-btn" onClick={onBack} aria-label="Back to portfolio">
-              <ArrowLeft size={16} />
-              <span>Back to Portfolio</span>
+            <button className="back-btn" onClick={onBack} aria-label="Back to home page" title="Back to home page">
+              <Home size={15} />
+              <span>Home</span>
             </button>
             <span className="header-divider">/</span>
             <span className="header-project-name">{project.title}</span>
@@ -346,6 +348,10 @@ root@prod-api-01:~# sftp-sync --status
                       <span className="b-trend">GST compliant</span>
                     </div>
                   </div>
+                </div>
+              ) : project.visual === "sync" ? (
+                <div className="detail-flux-wrapper">
+                  <FluxMeshVisual isDetailed={true} />
                 </div>
               ) : (
                 <div className="detail-generic-ui">

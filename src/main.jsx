@@ -10,6 +10,7 @@ import {
   ExternalLink,
   Github,
   Globe2,
+  Home,
   Instagram,
   Layers,
   Linkedin,
@@ -38,6 +39,7 @@ import { ExperiencePage } from "./components/ExperiencePage";
 import { ContactPage } from "./components/ContactPage";
 import { AboutPage } from "./components/AboutPage";
 import { AnimatedSignature } from "./components/AnimatedSignature";
+import { FluxMeshVisual } from "./components/FluxMeshVisual";
 
 const GITHUB = "https://github.com/kunal-live";
 const PROFILE_IMAGE = heroImage;
@@ -82,17 +84,17 @@ function ParticleCanvas() {
 
     // Pointer tracking
     function onMouseMove(e) { mouse.x = e.clientX; mouse.y = e.clientY; }
-    function onMouseLeave()  { mouse.x = -9999; mouse.y = -9999; }
+    function onMouseLeave() { mouse.x = -9999; mouse.y = -9999; }
     window.addEventListener("mousemove", onMouseMove);
     window.addEventListener("mouseleave", onMouseLeave);
 
     // Build particles
     const particles = Array.from({ length: PARTICLE_COUNT }, () => ({
-      x:  Math.random() * window.innerWidth,
-      y:  Math.random() * window.innerHeight,
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
       vx: (Math.random() - 0.5) * 0.38,
       vy: (Math.random() - 0.5) * 0.38,
-      r:  Math.random() * 1.6 + 0.8,
+      r: Math.random() * 1.6 + 0.8,
       pulse: Math.random() * Math.PI * 2,
     }));
 
@@ -102,8 +104,8 @@ function ParticleCanvas() {
       const dark = isDark();
 
       // Particle colors based on theme
-      const nodeColor   = dark ? "rgba(234,179,8,"  : "rgba(120,80,10,";
-      const lineColor   = dark ? "rgba(148,163,184," : "rgba(71,85,105,";
+      const nodeColor = dark ? "rgba(234,179,8," : "rgba(120,80,10,";
+      const lineColor = dark ? "rgba(148,163,184," : "rgba(71,85,105,";
       const accentColor = dark ? "rgba(250,204,21," : "rgba(161,98,7,";
 
       ctx.clearRect(0, 0, W, H);
@@ -261,7 +263,7 @@ function ProjectVisual({ project }) {
     }
     return (
       <div className="project-visual terminal-ui">
-        <div className="window-bar"><span/><span/><span/></div>
+        <div className="window-bar"><span /><span /><span /></div>
         <div className="terminal-grid">
           <div className="side-tree">
             <b>SESSIONS</b>
@@ -324,7 +326,7 @@ $ tail -f /var/log/syslog
           <div><small>E-INVOICES</small><strong>1,284</strong></div>
         </div>
         <div className="chart">
-          <i/><i/><i/><i/><i/><i/><i/><i/><i/>
+          <i /><i /><i /><i /><i /><i /><i /><i /><i />
         </div>
       </div>
     );
@@ -395,15 +397,15 @@ $ tail -f /var/log/syslog
           <small>Pro Utility</small>
           <strong>₹ 12,499</strong>
         </div>
-        <div className="product-lines"><i/><i/><i/><i/></div>
+        <div className="product-lines"><i /><i /><i /><i /></div>
       </div>
     );
   }
   if (project.visual === "portfolio") {
     return (
       <div className="project-visual portfolio-ui">
-        <div className="portfolio-type">Kunal<br/><em>Jha.</em></div>
-        <div className="portfolio-orb"/>
+        <div className="portfolio-type">Kunal<br /><em>Jha.</em></div>
+        <div className="portfolio-orb" />
         <div className="portfolio-stat"><b>ENGINEER</b><span>Software · Systems · Product</span></div>
       </div>
     );
@@ -442,65 +444,16 @@ $ tail -f /var/log/syslog
       <div className="project-visual monitor-ui">
         <div className="monitor-title">SENTRIX <span>ACTIVE</span></div>
         <div className="signal-grid">
-          <div><small>CPU</small><b>42%</b><i style={{width:"42%"}}/></div>
-          <div><small>MEMORY</small><b>61%</b><i style={{width:"61%"}}/></div>
-          <div><small>DISK</small><b>38%</b><i style={{width:"38%"}}/></div>
-          <div><small>UPTIME</small><b>99.99%</b><i style={{width:"92%"}}/></div>
+          <div><small>CPU</small><b>42%</b><i style={{ width: "42%" }} /></div>
+          <div><small>MEMORY</small><b>61%</b><i style={{ width: "61%" }} /></div>
+          <div><small>DISK</small><b>38%</b><i style={{ width: "38%" }} /></div>
+          <div><small>UPTIME</small><b>99.99%</b><i style={{ width: "92%" }} /></div>
         </div>
       </div>
     );
   }
   if (project.visual === "sync") {
-    return (
-      <div className="project-visual fulx-mesh-preview">
-        <div className="fulx-header-bar">
-          <div className="fulx-dots">
-            <span />
-            <span />
-            <span />
-          </div>
-          <div className="fulx-title-pill">
-            <Layers size={11} />
-            <span>Flux · Local-First P2P Replication Engine</span>
-          </div>
-          <span className="fulx-version-chip">UPCOMING · P2P</span>
-        </div>
-        <div className="fulx-mesh-content">
-          <div className="fulx-nodes-cluster">
-            <div className="fulx-node host active">
-              <span className="node-ping" />
-              <div className="node-icon">💻</div>
-              <div className="node-info">
-                <b>Local Host</b>
-                <small>127.0.0.1</small>
-              </div>
-              <span className="node-status synced">SYNCED</span>
-            </div>
-            <div className="fulx-stream-flow">
-              <div className="flow-track">
-                <span className="flow-dot d1" />
-                <span className="flow-dot d2" />
-                <span className="flow-dot d3" />
-              </div>
-              <div className="merkle-badge">Merkle DAG · CDC Chunks</div>
-            </div>
-            <div className="fulx-node peer active">
-              <span className="node-ping" />
-              <div className="node-icon">🖥️</div>
-              <div className="node-info">
-                <b>Peer Node</b>
-                <small>192.168.1.15</small>
-              </div>
-              <span className="node-status transfer">STREAMING</span>
-            </div>
-          </div>
-          <div className="fulx-quick-stats">
-            <span className="stat-pill">Zero Cloud Relays</span>
-            <span className="stat-pill highlight">mTLS + QUIC</span>
-          </div>
-        </div>
-      </div>
-    );
+    return <FluxMeshVisual isDetailed={false} />;
   }
   return null;
 }
@@ -535,7 +488,7 @@ function ProjectCard({ project, onSelect }) {
           <div className="project-copy">
             <div className="project-meta">
               <span>{project.index} / {project.category}</span>
-              {project.soon ? <span className="soon">SOON</span> : <span className="live-dot"><i/> PUBLIC</span>}
+              {project.soon ? <span className="soon">SOON</span> : <span className="live-dot"><i /> PUBLIC</span>}
             </div>
             <h3 className="project-title-row">
               <span>{project.title}</span>
@@ -549,34 +502,34 @@ function ProjectCard({ project, onSelect }) {
             </div>
           </div>
         </a>
-      <div className="project-direct-actions">
-        <a 
-          href={project.repo} 
-          target="_blank" 
-          rel="noreferrer"
-          className="direct-link-btn"
-          title="Open GitHub Repository"
-        >
-          <Github size={14} />
-          <span>Code</span>
-          <ArrowUpRight size={13}/>
-        </a>
-        {project.live ? (
-          <a 
-            href={project.live} 
-            target="_blank" 
+        <div className="project-direct-actions">
+          <a
+            href={project.repo}
+            target="_blank"
             rel="noreferrer"
-            className="direct-link-btn live"
-            title="Open Live Application"
+            className="direct-link-btn"
+            title="Open GitHub Repository"
           >
-            <Globe2 size={14}/>
-            <span>Live Demo</span>
-            <ExternalLink size={12}/>
+            <Github size={14} />
+            <span>Code</span>
+            <ArrowUpRight size={13} />
           </a>
-        ) : (
-          <span className="muted-link">No live URL</span>
-        )}
-      </div>
+          {project.live ? (
+            <a
+              href={project.live}
+              target="_blank"
+              rel="noreferrer"
+              className="direct-link-btn live"
+              title="Open Live Application"
+            >
+              <Globe2 size={14} />
+              <span>Live Demo</span>
+              <ExternalLink size={12} />
+            </a>
+          ) : (
+            <span className="muted-link">No live URL</span>
+          )}
+        </div>
       </div>
     </article>
   );
@@ -652,7 +605,7 @@ function App() {
       .then(data => {
         if (data) setGithub({ repos: data.public_repos ?? 6, stars: 3 });
       })
-      .catch(() => {});
+      .catch(() => { });
   }, []);
 
   const year = useMemo(() => new Date().getFullYear(), []);
@@ -679,48 +632,73 @@ function App() {
           <LogoMark onClick={(e) => navigateToPage(null, e)} />
           <nav className={menuOpen ? "mobile-open" : ""}>
             <a
+              href="#top"
+              className={activePage === null ? "active-nav-link" : ""}
+              onClick={(e) => {
+                navigateToPage(null, e);
+                setMenuOpen(false);
+              }}
+            >
+              Home
+            </a>
+            <a
               href="#about"
               className={activePage === "about" ? "active-nav-link" : ""}
-              onClick={(e) => navigateToPage("about", e)}
+              onClick={(e) => {
+                navigateToPage("about", e);
+                setMenuOpen(false);
+              }}
             >
               About
             </a>
             <a
               href="#work"
               className={activePage === "work" ? "active-nav-link" : ""}
-              onClick={(e) => navigateToPage("work", e)}
+              onClick={(e) => {
+                navigateToPage("work", e);
+                setMenuOpen(false);
+              }}
             >
               Work
             </a>
             <a
               href="#stack"
               className={activePage === "stack" ? "active-nav-link" : ""}
-              onClick={(e) => navigateToPage("stack", e)}
+              onClick={(e) => {
+                navigateToPage("stack", e);
+                setMenuOpen(false);
+              }}
             >
               Stack
             </a>
             <a
               href="#experience"
               className={activePage === "experience" ? "active-nav-link" : ""}
-              onClick={(e) => navigateToPage("experience", e)}
+              onClick={(e) => {
+                navigateToPage("experience", e);
+                setMenuOpen(false);
+              }}
             >
               Experience
             </a>
             <a
               href="#contact"
               className={activePage === "contact" ? "active-nav-link" : ""}
-              onClick={(e) => navigateToPage("contact", e)}
+              onClick={(e) => {
+                navigateToPage("contact", e);
+                setMenuOpen(false);
+              }}
             >
               Contact
             </a>
           </nav>
           <div className="header-actions">
             <button className="icon-btn" onClick={() => setDark(v => !v)} aria-label="Toggle theme">
-              {dark ? <Sun size={17}/> : <Moon size={17}/>}
+              {dark ? <Sun size={17} /> : <Moon size={17} />}
             </button>
-            <a className="top-cta" href="#contact" onClick={(e) => navigateToPage("contact", e)}>Let's talk <ArrowUpRight size={15}/></a>
+            <a className="top-cta" href="#contact" onClick={(e) => navigateToPage("contact", e)}>Let's talk <ArrowUpRight size={15} /></a>
             <button className="icon-btn menu-btn" onClick={() => setMenuOpen(v => !v)} aria-label="Open menu">
-              {menuOpen ? <X size={19}/> : <Menu size={19}/>}
+              {menuOpen ? <X size={19} /> : <Menu size={19} />}
             </button>
           </div>
         </div>
@@ -757,15 +735,15 @@ function App() {
           <main>
             <section className="hero">
               <div className="hero-left">
-                <div className="eyebrow"><span className="status-dot"/> Available for select engineering work</div>
+                <div className="eyebrow"><span className="status-dot" /> Available for select engineering work</div>
                 <h1>Software that works <em>under pressure.</em></h1>
                 <p className="hero-copy">
                   I’m <strong>Kunal Jha</strong> — a <strong>Software Engineer</strong>{" "}
                   building backend systems, developer tools, and products that solve concrete problems.
                 </p>
                 <div className="hero-actions">
-                  <a className="black-btn" href="#work" onClick={(e) => navigateToPage("work", e)}>View selected work <ArrowDownRight size={17}/></a>
-                  <a className="text-btn" href={GITHUB} target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={16}/></a>
+                  <a className="black-btn" href="#work" onClick={(e) => navigateToPage("work", e)}>View selected work <ArrowDownRight size={17} /></a>
+                  <a className="text-btn" href={GITHUB} target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={16} /></a>
                 </div>
                 <div className="hero-stats">
                   <div><b>{github.repos}+</b><span>public repositories</span></div>
@@ -775,13 +753,13 @@ function App() {
               </div>
 
               <div className="hero-portrait-wrap">
-                <div className="portrait-ring"/>
+                <div className="portrait-ring" />
                 <div className="portrait-card">
                   <img src={PROFILE_IMAGE} alt="Kunal Jha" />
-                  <div className="portrait-tag"><TerminalSquare size={15}/><span>BUILD / SHIP / ITERATE</span></div>
+                  <div className="portrait-tag"><TerminalSquare size={15} /><span>BUILD / SHIP / ITERATE</span></div>
                 </div>
-                <div className="orbit orbit-one"/>
-                <div className="orbit orbit-two"/>
+                <div className="orbit orbit-one" />
+                <div className="orbit orbit-two" />
                 <div className="portrait-note"><small>BASED IN</small><b>Pune, India</b></div>
               </div>
             </section>
@@ -811,13 +789,12 @@ function App() {
                     define reliable state and interfaces, then make the workflow fast and obvious for the person using it.
                   </p>
                   <p>
-                    My next product direction is <strong>SentriX</strong> — a server-health monitoring system built
-                    to turn low-level machine signals into an operational dashboard engineers can act on.
+                    My next product direction is <strong>Flux</strong> — a zero-install, cross-platform nearby P2P file sharing engine engineered in Go with WebRTC DataChannels, File System Access API disk streaming, and end-to-end SHA-256 integrity.
                   </p>
                   <div className="about-links">
-                    <a href="https://www.linkedin.com/in/kunal-jha-dev/" target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight size={15}/></a>
-                    <a href="https://x.com/kunaljha67" target="_blank" rel="noreferrer">X / Twitter <ArrowUpRight size={15}/></a>
-                    <a href="https://www.instagram.com/still.by.kunal/" target="_blank" rel="noreferrer">Instagram <ArrowUpRight size={15}/></a>
+                    <a href="https://www.linkedin.com/in/kunal-jha-dev/" target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight size={15} /></a>
+                    <a href="https://x.com/kunaljha67" target="_blank" rel="noreferrer">X / Twitter <ArrowUpRight size={15} /></a>
+                    <a href="https://www.instagram.com/still.by.kunal/" target="_blank" rel="noreferrer">Instagram <ArrowUpRight size={15} /></a>
                   </div>
                 </div>
               </div>
@@ -829,9 +806,9 @@ function App() {
                 <div className="section-intro">
                   <div>
                     <h2>Projects with a reason to exist.</h2>
-                    <p>Current public work from my GitHub profile, plus SentriX — the server-health monitoring product I’m taking into the next build phase.</p>
+                    <p>Current public work from my GitHub profile, plus Flux — the zero-install cross-platform nearby P2P file sharing system I’m actively building.</p>
                   </div>
-                  <a className="outline-btn" href="#work" onClick={(e) => navigateToPage("work", e)}>Browse all projects & architecture <ArrowUpRight size={16}/></a>
+                  <a className="outline-btn" href="#work" onClick={(e) => navigateToPage("work", e)}>Browse all projects & architecture <ArrowUpRight size={16} /></a>
                 </div>
                 <div className="project-grid">
                   {projects.map(p => <ProjectCard key={p.title} project={p} onSelect={handleSelectProject} />)}
@@ -839,97 +816,97 @@ function App() {
               </div>
             </section>
 
-        <section id="stack" className="section stack-section">
-          <div className="section-label">03 / STACK</div>
-          <div className="section-content">
-            <div className="section-intro">
-              <div><h2>Tools I actually build with.</h2></div>
-              <div className="stack-note"><Code2 size={17}/><span>Focused on maintainability, not tool collecting.</span></div>
-            </div>
-            <div className="skill-grid">
-              {skills.map(([name, desc]) => (
-                <div className="skill-item" key={name}>
-                  <span className="skill-number">0{name === "C / C++" ? "1" : skills.findIndex(s => s[0] === name)+1}</span>
-                  <div><h3>{name}</h3><p>{desc}</p></div>
-                  <Check size={17}/>
+            <section id="stack" className="section stack-section">
+              <div className="section-label">03 / STACK</div>
+              <div className="section-content">
+                <div className="section-intro">
+                  <div><h2>Tools I actually build with.</h2></div>
+                  <div className="stack-note"><Code2 size={17} /><span>Focused on maintainability, not tool collecting.</span></div>
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="experience" className="section experience-section">
-          <div className="section-label">04 / EXPERIENCE</div>
-          <div className="section-content">
-            <div className="experience-card">
-              <div className="experience-icon"><BriefcaseBusiness size={20}/></div>
-              <div className="experience-main">
-                <div className="experience-top"><span>CURRENT ROLE</span><b>2026 — PRESENT</b></div>
-                <h2>Software Engineer</h2>
-                <p className="company">Avisys Services Pvt. Ltd.</p>
-                <p>
-                  Working in enterprise software engineering,
-                  building practical depth in backend development, distributed systems and business-critical workflows.
-                </p>
+                <div className="skill-grid">
+                  {skills.map(([name, desc]) => (
+                    <div className="skill-item" key={name}>
+                      <span className="skill-number">0{name === "C / C++" ? "1" : skills.findIndex(s => s[0] === name) + 1}</span>
+                      <div><h3>{name}</h3><p>{desc}</p></div>
+                      <Check size={17} />
+                    </div>
+                  ))}
+                </div>
               </div>
-              <a href="https://www.linkedin.com/in/kunal-jha-dev/" target="_blank" rel="noreferrer" className="circle-arrow" aria-label="Open LinkedIn">
-                <ArrowUpRight size={20}/>
-              </a>
-            </div>
+            </section>
 
-            <div className="experience-card secondary">
-              <div className="experience-icon"><Zap size={20}/></div>
-              <div className="experience-main">
-                <div className="experience-top"><span>INDEPENDENT BUILDING</span><b>ONGOING</b></div>
-                <h2>Developer Tools & Product Engineering</h2>
-                <p>
-                  Building and iterating on software such as NexTerm, SpendWise and other technical products,
-                  with an emphasis on system behavior, UI quality and useful workflows.
-                </p>
+            <section id="experience" className="section experience-section">
+              <div className="section-label">04 / EXPERIENCE</div>
+              <div className="section-content">
+                <div className="experience-card">
+                  <div className="experience-icon"><BriefcaseBusiness size={20} /></div>
+                  <div className="experience-main">
+                    <div className="experience-top"><span>CURRENT ROLE</span><b>2026 — PRESENT</b></div>
+                    <h2>Software Engineer</h2>
+                    <p className="company">Avisys Services Pvt. Ltd.</p>
+                    <p>
+                      Working in enterprise software engineering,
+                      building practical depth in backend development, distributed systems and business-critical workflows.
+                    </p>
+                  </div>
+                  <a href="https://www.linkedin.com/in/kunal-jha-dev/" target="_blank" rel="noreferrer" className="circle-arrow" aria-label="Open LinkedIn">
+                    <ArrowUpRight size={20} />
+                  </a>
+                </div>
+
+                <div className="experience-card secondary">
+                  <div className="experience-icon"><Zap size={20} /></div>
+                  <div className="experience-main">
+                    <div className="experience-top"><span>INDEPENDENT BUILDING</span><b>ONGOING · P2P</b></div>
+                    <h2>Developer Tools & Product Engineering</h2>
+                    <p>
+                      Building and iterating on software such as Flux, NexTerm, SpendWise and other technical products,
+                      with an emphasis on system behavior, UI quality and useful workflows.
+                    </p>
+                  </div>
+                  <a href={GITHUB} target="_blank" rel="noreferrer" className="circle-arrow" aria-label="Open GitHub">
+                    <ArrowUpRight size={20} />
+                  </a>
+                </div>
               </div>
-              <a href={GITHUB} target="_blank" rel="noreferrer" className="circle-arrow" aria-label="Open GitHub">
-                <ArrowUpRight size={20}/>
-              </a>
-            </div>
+            </section>
+
+            {/* --- ANIMATED SIGNATURE (JUST ABOVE CONTACT) --- */}
+            <AnimatedSignature />
+
+            <section id="contact" className="contact-section">
+              <div className="contact-no">05</div>
+              <div className="contact-copy">
+                <div className="section-label">CONTACT</div>
+                <h2>Have a problem worth <em>engineering?</em></h2>
+                <p>For software engineering, collaboration and product discussions, reach out directly via email or connect with me.</p>
+                <div className="contact-actions">
+                  <a className="black-btn" href="mailto:kunaljha8990@gmail.com" title="Send email to Kunal Jha"><Mail size={16} /> kunaljha8990@gmail.com <ArrowUpRight size={16} /></a>
+                  <a className="outline-btn" href="https://www.linkedin.com/in/kunal-jha-dev/" target="_blank" rel="noreferrer"><Linkedin size={16} /> LinkedIn <ArrowUpRight size={16} /></a>
+                  <a className="outline-btn" href={GITHUB} target="_blank" rel="noreferrer"><Github size={16} /> GitHub <ArrowUpRight size={16} /></a>
+                </div>
+              </div>
+              <div className="contact-visual">
+                <div className="contact-avatar-frame">
+                  <img src={bottomAvatar} alt="Kunal Jha" className="contact-avatar-img" />
+                </div>
+                <div className="contact-badge">
+                  <span className="status-dot" />
+                  <span>OPEN TO BUILD</span>
+                </div>
+              </div>
+            </section>
+          </main>
+
+          <div className="visitor-counter-wrapper">
+            <VisitorCounter />
           </div>
-        </section>
 
-        {/* --- ANIMATED SIGNATURE (JUST ABOVE CONTACT) --- */}
-        <AnimatedSignature />
-
-        <section id="contact" className="contact-section">
-          <div className="contact-no">05</div>
-          <div className="contact-copy">
-            <div className="section-label">CONTACT</div>
-            <h2>Have a problem worth <em>engineering?</em></h2>
-            <p>For software engineering, collaboration and product discussions, reach out directly via email or connect with me.</p>
-            <div className="contact-actions">
-              <a className="black-btn" href="mailto:kunaljha8990@gmail.com" title="Send email to Kunal Jha"><Mail size={16}/> kunaljha8990@gmail.com <ArrowUpRight size={16}/></a>
-              <a className="outline-btn" href="https://www.linkedin.com/in/kunal-jha-dev/" target="_blank" rel="noreferrer"><Linkedin size={16}/> LinkedIn <ArrowUpRight size={16}/></a>
-              <a className="outline-btn" href={GITHUB} target="_blank" rel="noreferrer"><Github size={16}/> GitHub <ArrowUpRight size={16}/></a>
-            </div>
-          </div>
-          <div className="contact-visual">
-            <div className="contact-avatar-frame">
-              <img src={bottomAvatar} alt="Kunal Jha" className="contact-avatar-img" />
-            </div>
-            <div className="contact-badge">
-              <span className="status-dot" />
-              <span>OPEN TO BUILD</span>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <div className="visitor-counter-wrapper">
-        <VisitorCounter />
-      </div>
-
-      <footer className="site-footer">
-        <div>© {year} Kunal Jha</div>
-        <SocialLinks/>
-        <div className="footer-right">Software Engineer</div>
-      </footer>
+          <footer className="site-footer">
+            <div>© {year} Kunal Jha</div>
+            <SocialLinks />
+            <div className="footer-right">Software Engineer</div>
+          </footer>
         </>
       )}
     </div>

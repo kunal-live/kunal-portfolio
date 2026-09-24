@@ -7,6 +7,7 @@ import {
   Copy,
   Github,
   Globe2,
+  Home,
   Instagram,
   Linkedin,
   Mail,
@@ -62,9 +63,9 @@ export function ContactPage({ onBack, GITHUB = "https://github.com/kunal-live" }
       {/* Subpage Hero Header */}
       <section className="subpage-hero">
         <div className="subpage-nav-bar">
-          <button className="subpage-back-btn" onClick={onBack} aria-label="Return to overview">
-            <ArrowLeft size={16} />
-            <span>Overview</span>
+          <button className="subpage-back-btn" onClick={onBack} aria-label="Return to home page" title="Return to home page">
+            <Home size={15} />
+            <span>Home</span>
           </button>
           <span className="subpage-breadcrumb-separator">/</span>
           <span className="subpage-current-crumb">Contact & Collaboration</span>
