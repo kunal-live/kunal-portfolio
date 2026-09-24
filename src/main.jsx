@@ -65,75 +65,122 @@ function ParticleCanvas() {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     let animId;
-    let mouse = { x: -9999, y: -9999 };
+    let pointer = { x: -9999, y: -9999, active: false };
+    let time = 0;
 
-    const PARTICLE_COUNT = 72;
-    const MAX_DIST = 145;
-    const MOUSE_RADIUS = 180;
+    const isMobile = window.innerWidth < 768;
+    const PARTICLE_COUNT = isMobile ? 54 : 76;
+    const MAX_DIST = isMobile ? 125 : 155;
+    const POINTER_RADIUS = isMobile ? 145 : 185;
 
     // Read current theme
     const isDark = () => document.documentElement.dataset.theme !== "light";
 
-    // Resize canvas to full viewport
+    // High-DPI canvas sizing
     function resize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      canvas.style.width = `${w}px`;
+      canvas.style.height = `${h}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
     resize();
     window.addEventListener("resize", resize);
 
-    // Pointer tracking
-    function onMouseMove(e) { mouse.x = e.clientX; mouse.y = e.clientY; }
-    function onMouseLeave() { mouse.x = -9999; mouse.y = -9999; }
+    // Pointer tracking (Mouse)
+    function onMouseMove(e) {
+      pointer.x = e.clientX;
+      pointer.y = e.clientY;
+      pointer.active = true;
+    }
+    function onMouseLeave() {
+      pointer.x = -9999;
+      pointer.y = -9999;
+      pointer.active = false;
+    }
+
+    // Touch tracking (Mobile & Tablet)
+    function onTouchMove(e) {
+      if (e.touches && e.touches[0]) {
+        pointer.x = e.touches[0].clientX;
+        pointer.y = e.touches[0].clientY;
+        pointer.active = true;
+      }
+    }
+    function onTouchEnd() {
+      pointer.active = false;
+    }
+
     window.addEventListener("mousemove", onMouseMove);
     window.addEventListener("mouseleave", onMouseLeave);
+    window.addEventListener("touchmove", onTouchMove, { passive: true });
+    window.addEventListener("touchstart", onTouchMove, { passive: true });
+    window.addEventListener("touchend", onTouchEnd, { passive: true });
 
     // Build particles
     const particles = Array.from({ length: PARTICLE_COUNT }, () => ({
       x: Math.random() * window.innerWidth,
       y: Math.random() * window.innerHeight,
-      vx: (Math.random() - 0.5) * 0.38,
-      vy: (Math.random() - 0.5) * 0.38,
-      r: Math.random() * 1.6 + 0.8,
+      vx: (Math.random() - 0.5) * (isMobile ? 0.48 : 0.42),
+      vy: (Math.random() - 0.5) * (isMobile ? 0.48 : 0.42),
+      r: Math.random() * 1.8 + (isMobile ? 1.2 : 0.9),
       pulse: Math.random() * Math.PI * 2,
     }));
 
     function draw() {
-      const W = canvas.width;
-      const H = canvas.height;
+      time += 0.016;
+      const W = window.innerWidth;
+      const H = window.innerHeight;
       const dark = isDark();
 
-      // Particle colors based on theme
-      const nodeColor = dark ? "rgba(234,179,8," : "rgba(120,80,10,";
-      const lineColor = dark ? "rgba(148,163,184," : "rgba(71,85,105,";
-      const accentColor = dark ? "rgba(250,204,21," : "rgba(161,98,7,";
+      // Autonomous virtual wave focal point for mobile & idle
+      // Ensures the particle network is continuously alive, moving, and glowing on mobile screens
+      const autoFocusX = W * 0.5 + Math.sin(time * 0.75) * (W * 0.36);
+      const autoFocusY = H * 0.48 + Math.cos(time * 0.55) * (H * 0.28);
+
+      const activeX = pointer.active ? pointer.x : autoFocusX;
+      const activeY = pointer.active ? pointer.y : autoFocusY;
+      const focusRadius = pointer.active ? POINTER_RADIUS : (isMobile ? 140 : 170);
+
+      // High-visibility golden/amber palette tailored for both dark & light modes
+      const nodeColor = dark ? "rgba(245,197,24," : "rgba(180,120,20,";
+      const lineColor = dark ? "rgba(203,213,225," : "rgba(100,116,139,";
+      const accentColor = dark ? "rgba(250,204,21," : "rgba(217,119,6,";
 
       ctx.clearRect(0, 0, W, H);
 
       // Move particles
       for (const p of particles) {
-        p.pulse += 0.018;
+        p.pulse += 0.024;
         p.x += p.vx;
         p.y += p.vy;
-        // Soft bounce
-        if (p.x < 0 || p.x > W) p.vx *= -1;
-        if (p.y < 0 || p.y > H) p.vy *= -1;
 
-        // Mouse repulsion (gentle push)
-        const dx = p.x - mouse.x;
-        const dy = p.y - mouse.y;
+        // Bounce at boundaries
+        if (p.x < 0) { p.x = 0; p.vx *= -1; }
+        else if (p.x > W) { p.x = W; p.vx *= -1; }
+        if (p.y < 0) { p.y = 0; p.vy *= -1; }
+        else if (p.y > H) { p.y = H; p.vy *= -1; }
+
+        // Touch / Focus interaction
+        const dx = p.x - activeX;
+        const dy = p.y - activeY;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < MOUSE_RADIUS && dist > 0) {
-          const force = (MOUSE_RADIUS - dist) / MOUSE_RADIUS * 0.55;
+        if (dist < focusRadius && dist > 0) {
+          const force = ((focusRadius - dist) / focusRadius) * (pointer.active ? 0.65 : 0.28);
           p.vx += (dx / dist) * force;
           p.vy += (dy / dist) * force;
-          // Speed cap
           const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
-          if (speed > 2.2) { p.vx = (p.vx / speed) * 2.2; p.vy = (p.vy / speed) * 2.2; }
+          const maxSpeed = pointer.active ? 2.6 : 1.5;
+          if (speed > maxSpeed) {
+            p.vx = (p.vx / speed) * maxSpeed;
+            p.vy = (p.vy / speed) * maxSpeed;
+          }
         } else {
-          // Dampen back to cruising speed
-          p.vx *= 0.995;
-          p.vy *= 0.995;
+          p.vx *= 0.993;
+          p.vy *= 0.993;
         }
       }
 
@@ -146,22 +193,21 @@ function ParticleCanvas() {
           const dy = a.y - b.y;
           const d = Math.sqrt(dx * dx + dy * dy);
           if (d < MAX_DIST) {
-            const alpha = (1 - d / MAX_DIST) * 0.32;
-            // Check mouse proximity for accent glow
-            const midX = (a.x + b.x) / 2;
-            const midY = (a.y + b.y) / 2;
-            const mx = midX - mouse.x;
-            const my = midY - mouse.y;
-            const mouseDist = Math.sqrt(mx * mx + my * my);
-            const isNearMouse = mouseDist < MOUSE_RADIUS;
+            const alpha = (1 - d / MAX_DIST) * (isMobile ? 0.44 : 0.36);
+            const midX = (a.x + b.x) * 0.5;
+            const midY = (a.y + b.y) * 0.5;
+            const mx = midX - activeX;
+            const my = midY - activeY;
+            const focusDist = Math.sqrt(mx * mx + my * my);
+            const isNearFocus = focusDist < focusRadius;
 
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);
-            ctx.strokeStyle = isNearMouse
-              ? `${accentColor}${(alpha * 1.8).toFixed(3)})`
+            ctx.strokeStyle = isNearFocus
+              ? `${accentColor}${(alpha * 2.1).toFixed(3)})`
               : `${lineColor}${alpha.toFixed(3)})`;
-            ctx.lineWidth = isNearMouse ? 0.9 : 0.5;
+            ctx.lineWidth = isNearFocus ? 1.3 : (isMobile ? 0.8 : 0.6);
             ctx.stroke();
           }
         }
@@ -170,24 +216,24 @@ function ParticleCanvas() {
       // Draw nodes
       for (const p of particles) {
         const pulse = 0.5 + Math.sin(p.pulse) * 0.5;
-        const dx = p.x - mouse.x;
-        const dy = p.y - mouse.y;
-        const nearMouse = Math.sqrt(dx * dx + dy * dy) < MOUSE_RADIUS;
-        const radius = nearMouse ? p.r * (1.8 + pulse * 0.5) : p.r * (1 + pulse * 0.25);
-        const alpha = nearMouse ? 0.85 : 0.35 + pulse * 0.25;
+        const dx = p.x - activeX;
+        const dy = p.y - activeY;
+        const nearFocus = Math.sqrt(dx * dx + dy * dy) < focusRadius;
+        const radius = nearFocus ? p.r * (1.75 + pulse * 0.5) : p.r * (1 + pulse * 0.3);
+        const alpha = nearFocus ? 0.95 : (isMobile ? 0.65 + pulse * 0.25 : 0.45 + pulse * 0.25);
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
-        ctx.fillStyle = nearMouse
+        ctx.fillStyle = nearFocus
           ? `${accentColor}${alpha.toFixed(2)})`
           : `${nodeColor}${alpha.toFixed(2)})`;
         ctx.fill();
 
-        // Glow on mouse-near nodes
-        if (nearMouse) {
+        // Ambient glow when near active focus
+        if (nearFocus) {
           ctx.beginPath();
           ctx.arc(p.x, p.y, radius * 3, 0, Math.PI * 2);
-          ctx.fillStyle = `${accentColor}${(alpha * 0.12).toFixed(3)})`;
+          ctx.fillStyle = `${accentColor}${(alpha * 0.18).toFixed(3)})`;
           ctx.fill();
         }
       }
@@ -202,6 +248,9 @@ function ParticleCanvas() {
       window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("mouseleave", onMouseLeave);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("touchstart", onTouchMove);
+      window.removeEventListener("touchend", onTouchEnd);
     };
   }, []);
 
@@ -693,16 +742,6 @@ function App() {
             </a>
 
             <div className="mobile-nav-tray">
-              <a
-                className="mobile-tray-cta"
-                href="#contact"
-                onClick={(e) => {
-                  navigateToPage("contact", e);
-                  setMenuOpen(false);
-                }}
-              >
-                Let's talk <ArrowUpRight size={15} />
-              </a>
               <div className="mobile-tray-socials">
                 <a href="mailto:kunaljha8990@gmail.com" aria-label="Email"><Mail size={18} /></a>
                 <a href={GITHUB} target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={18} /></a>
@@ -716,7 +755,6 @@ function App() {
             <button className="icon-btn" onClick={() => setDark(v => !v)} aria-label="Toggle theme">
               {dark ? <Sun size={17} /> : <Moon size={17} />}
             </button>
-            <a className="top-cta" href="#contact" onClick={(e) => navigateToPage("contact", e)}>Let's talk <ArrowUpRight size={15} /></a>
             <button className="icon-btn menu-btn" onClick={() => setMenuOpen(v => !v)} aria-label="Open menu">
               {menuOpen ? <X size={19} /> : <Menu size={19} />}
             </button>
