@@ -87,13 +87,40 @@ button {
 }
 
 .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-weight: 900;
-  font-size: 24px;
-  letter-spacing: -.07em
+  font-size: 22px;
+  letter-spacing: -.05em;
+  text-decoration: none;
+}
+
+.nav-avatar-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid var(--line);
+  background: var(--paper);
+  display: inline-block;
+  flex-shrink: 0;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.22s ease;
+}
+
+.logo:hover .nav-avatar-icon {
+  transform: scale(1.08);
+  border-color: var(--ink);
 }
 
 .logo span {
-  color: #6fa7ff
+  display: inline-flex;
+  align-items: baseline;
+}
+
+.logo span em {
+  font-style: normal;
+  color: #6fa7ff;
 }
 
 nav {

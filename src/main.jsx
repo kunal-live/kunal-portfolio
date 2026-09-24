@@ -30,6 +30,7 @@ import "./styles.css";
 import heroImage from "./assets/hero-main.jpg";
 import bottomAvatar from "./assets/avatar-bottom.jpg";
 import signatureImg from "./assets/kunal-signature.png";
+import avatarIcon from "./assets/avatar-icon.png";
 import { projects } from "./data/projectsData";
 import { ProjectDetailPage } from "./components/ProjectDetailPage";
 import { VisitorCounter } from "./components/VisitorCounter";
@@ -261,7 +262,8 @@ function ParticleCanvas() {
 function LogoMark({ onClick }) {
   return (
     <a className="logo" href="#top" onClick={onClick} aria-label="Kunal Jha home">
-      KJ<span>.</span>
+      <img src={avatarIcon} alt="Kunal Jha" className="nav-avatar-icon" />
+      <span>KJ<em>.</em></span>
     </a>
   );
 }
