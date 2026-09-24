@@ -39,11 +39,17 @@ html {
   height: 100vh;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.82;
+  opacity: 0.65;
 }
 
 :root[data-theme="dark"] .particle-canvas {
-  opacity: 0.92;
+  opacity: 0.75;
+}
+
+@media (max-width: 768px) {
+  .particle-canvas {
+    display: none !important;
+  }
 }
 
 body {
