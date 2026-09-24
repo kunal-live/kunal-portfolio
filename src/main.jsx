@@ -691,6 +691,26 @@ function App() {
             >
               Contact
             </a>
+
+            <div className="mobile-nav-tray">
+              <a
+                className="mobile-tray-cta"
+                href="#contact"
+                onClick={(e) => {
+                  navigateToPage("contact", e);
+                  setMenuOpen(false);
+                }}
+              >
+                Let's talk <ArrowUpRight size={15} />
+              </a>
+              <div className="mobile-tray-socials">
+                <a href="mailto:kunaljha8990@gmail.com" aria-label="Email"><Mail size={18} /></a>
+                <a href={GITHUB} target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={18} /></a>
+                <a href="https://www.linkedin.com/in/kunal-jha-dev/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={18} /></a>
+                <a href="https://x.com/kunaljha67" target="_blank" rel="noreferrer" aria-label="X"><X size={17} /></a>
+                <a href="https://www.instagram.com/still.by.kunal/" target="_blank" rel="noreferrer" aria-label="Instagram"><Instagram size={18} /></a>
+              </div>
+            </div>
           </nav>
           <div className="header-actions">
             <button className="icon-btn" onClick={() => setDark(v => !v)} aria-label="Toggle theme">
@@ -903,7 +923,7 @@ function App() {
           </div>
 
           <footer className="site-footer">
-            <div>© {year} Kunal Jha</div>
+            <div className="footer-left">© {year} Kunal Jha</div>
             <SocialLinks />
             <div className="footer-right">Software Engineer</div>
           </footer>
