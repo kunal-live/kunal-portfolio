@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 
+# Sitemaps
 Sitemap: https://kunaljha.online/sitemap.xml
+
+# Canonical Host
+Host: https://kunaljha.online

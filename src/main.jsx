@@ -579,6 +579,65 @@ function App() {
     return projects.find((p) => p.slug === activeProjectSlug) || null;
   }, [activeProjectSlug]);
 
+  // Synchronize SEO title, description, canonical link, and social tags dynamically
+  useEffect(() => {
+    let title = "Kunal Jha — Software Engineer | Distributed Systems & React";
+    let description =
+      "Kunal Jha is a Software Engineer specializing in distributed systems, developer tools, high-performance Go/C11 backends, and modern React web applications.";
+    let canonical = "https://kunaljha.online/";
+
+    if (activeProject) {
+      title = `${activeProject.title} — ${activeProject.tagline || activeProject.category} | Kunal Jha`;
+      description = activeProject.description || activeProject.longDescription;
+      canonical = `https://kunaljha.online/?project=${activeProject.slug}`;
+    } else if (activePage === "work") {
+      title = "Work & Systems Architecture — Kunal Jha";
+      description =
+        "Explore production software systems, distributed architectures, developer tools, and full-stack projects built by Kunal Jha.";
+      canonical = "https://kunaljha.online/?page=work";
+    } else if (activePage === "stack") {
+      title = "Engineering Stack & Technologies — Kunal Jha";
+      description =
+        "Technical stack, languages, frameworks, databases, and architectural tools leveraged by Kunal Jha across distributed backends and frontends.";
+      canonical = "https://kunaljha.online/?page=stack";
+    } else if (activePage === "experience") {
+      title = "Experience & Engineering Career — Kunal Jha";
+      description =
+        "Professional experience, systems engineering journey, open-source milestones, and technical accomplishments of Kunal Jha.";
+      canonical = "https://kunaljha.online/?page=experience";
+    } else if (activePage === "contact") {
+      title = "Contact & Collaboration — Kunal Jha";
+      description =
+        "Get in touch with Kunal Jha for software engineering opportunities, systems architecture consulting, and technical collaboration.";
+      canonical = "https://kunaljha.online/?page=contact";
+    } else if (activePage === "about") {
+      title = "About Kunal Jha — Software Engineer & Builder";
+      description =
+        "Personal background, engineering philosophy, and creative pursuits of Software Engineer Kunal Jha.";
+      canonical = "https://kunaljha.online/?page=about";
+    }
+
+    document.title = title;
+
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute("content", description);
+
+    const linkCanonical = document.querySelector('link[rel="canonical"]');
+    if (linkCanonical) linkCanonical.setAttribute("href", canonical);
+
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.setAttribute("content", title);
+    const ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc) ogDesc.setAttribute("content", description);
+    const ogUrl = document.querySelector('meta[property="og:url"]');
+    if (ogUrl) ogUrl.setAttribute("content", canonical);
+
+    const twTitle = document.querySelector('meta[name="twitter:title"]');
+    if (twTitle) twTitle.setAttribute("content", title);
+    const twDesc = document.querySelector('meta[name="twitter:description"]');
+    if (twDesc) twDesc.setAttribute("content", description);
+  }, [activeProject, activePage]);
+
   const navigateToPage = (pageKey, e) => {
     if (e) e.preventDefault();
     setMenuOpen(false);
@@ -765,7 +824,7 @@ function App() {
                 </div>
                 <div className="hero-stats">
                   <div><b>{github.repos}+</b><span>public repositories</span></div>
-                  <div><b>5</b><span>featured projects</span></div>
+                  <div><b>{projects.length}</b><span>featured projects</span></div>
                   <div><b>SWE</b><span>software engineer</span></div>
                 </div>
               </div>

@@ -5493,6 +5493,8 @@ nav a.active-nav-link::after {
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  display: block;
+  text-decoration: none;
 }
 
 .work-preview-image {
@@ -5659,6 +5661,7 @@ nav a.active-nav-link::after {
   cursor: pointer;
   border: 1px solid var(--ink);
   transition: all 0.2s ease;
+  text-decoration: none;
 }
 
 .deep-dive-btn:hover {

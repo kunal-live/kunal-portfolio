@@ -1,39 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <!-- Core Home Page -->
   <url>
     <loc>https://kunaljha.online/</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://kunaljha.online/hero-main.jpg</image:loc>
+      <image:title>Kunal Jha — Software Engineer</image:title>
+      <image:caption>Software Engineer portfolio of Kunal Jha</image:caption>
+    </image:image>
   </url>
+
+  <!-- Main Sections -->
   <url>
-    <loc>https://kunaljha.online/work</loc>
+    <loc>https://kunaljha.online/?page=work</loc>
     <lastmod>2026-09-24</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+
   <url>
-    <loc>https://kunaljha.online/stack</loc>
+    <loc>https://kunaljha.online/?page=stack</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
   <url>
-    <loc>https://kunaljha.online/experience</loc>
+    <loc>https://kunaljha.online/?page=experience</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
   <url>
-    <loc>https://kunaljha.online/contact</loc>
+    <loc>https://kunaljha.online/?page=about</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://kunaljha.online/hero-main.jpg</image:loc>
+      <image:title>About Kunal Jha</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://kunaljha.online/?page=contact</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+
+  <!-- Project Detail Pages -->
   <url>
-    <loc>https://kunaljha.online/about</loc>
+    <loc>https://kunaljha.online/?project=flux</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://kunaljha.online/?project=nexterm</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://kunaljha.online/nexterm-dashboard.png</image:loc>
+      <image:title>NexTerm Desktop SSH Client &amp; Workspace</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://kunaljha.online/?project=sentrix</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://kunaljha.online/sentrix-overview.png</image:loc>
+      <image:title>SentriX Real-Time Infrastructure Fleet Monitoring</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://kunaljha.online/?project=spendwise</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://kunaljha.online/spendwise-dashboard.png</image:loc>
+      <image:title>SpendWise Personal Finance OS &amp; Smart Wealth Analytics</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://kunaljha.online/?project=billing-operations-portal</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://kunaljha.online/billing-dashboard.png</image:loc>
+      <image:title>Billing Operations Portal Dashboard</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://kunaljha.online/?project=ecommerce-website</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://kunaljha.online/ecommerce-storefront.png</image:loc>
+      <image:title>Modern Streetwear &amp; Footwear Ecommerce Storefront</image:title>
+    </image:image>
   </url>
 </urlset>

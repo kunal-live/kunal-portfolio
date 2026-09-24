@@ -143,18 +143,21 @@ export function WorkPage({ onSelectProject, onBack, GITHUB = "https://github.com
                 </div>
 
                 {/* Project Visual Showcase Frame */}
-                <div
+                {/* Project Visual Showcase Frame */}
+                <a
+                  href={`?project=${project.slug}`}
                   className="work-card-visual"
-                  onClick={() => onSelectProject(project.slug)}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => e.key === "Enter" && onSelectProject(project.slug)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onSelectProject(project.slug);
+                  }}
                   title={`Explore full architecture for ${project.title}`}
+                  aria-label={`Explore full architecture for ${project.title}`}
                 >
                   {previewImg ? (
                     <img
                       src={previewImg}
-                      alt={project.title}
+                      alt={`${project.title} — ${project.tagline || "Systems Engineering Project"}`}
                       className="work-preview-image"
                       loading="lazy"
                     />
@@ -173,16 +176,22 @@ export function WorkPage({ onSelectProject, onBack, GITHUB = "https://github.com
                       <ArrowUpRight size={14} />
                     </span>
                   </div>
-                </div>
+                </a>
 
                 {/* Detailed Description Content */}
                 <div className="work-card-body">
                   <div className="work-card-title-row">
-                    <h2
-                      className="work-project-title"
-                      onClick={() => onSelectProject(project.slug)}
-                    >
-                      {project.title}
+                    <h2 className="work-project-title">
+                      <a
+                        href={`?project=${project.slug}`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          onSelectProject(project.slug);
+                        }}
+                        style={{ textDecoration: "none", color: "inherit" }}
+                      >
+                        {project.title}
+                      </a>
                     </h2>
                     {project.live && (
                       <span className="live-status-pill">
@@ -210,13 +219,17 @@ export function WorkPage({ onSelectProject, onBack, GITHUB = "https://github.com
 
                   {/* Action Buttons */}
                   <div className="work-card-actions">
-                    <button
+                    <a
+                      href={`?project=${project.slug}`}
                       className="deep-dive-btn"
-                      onClick={() => onSelectProject(project.slug)}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        onSelectProject(project.slug);
+                      }}
                     >
                       <span>Deep Dive Architecture</span>
                       <ArrowUpRight size={16} />
-                    </button>
+                    </a>
 
                     {project.repo && (
                       <a
