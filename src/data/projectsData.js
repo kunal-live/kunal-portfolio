@@ -358,11 +358,11 @@ export const projects = [
       "SentriX is a modern, high-performance infrastructure monitoring and fleet observability platform built for Linux servers and distributed clusters. Powered by a native C11 daemon delivering sub-10ms collection latency, a high-throughput Go ingestion pipeline, and TimescaleDB hypertable storage, SentriX replaces heavyweight legacy monitoring suites with a sleek, obsidian-glassmorphic real-time cockpit.",
     details: "C11 · Go · TimescaleDB · React · WebSockets",
     repo: "https://github.com/kunal-live/SentriX",
-    live: null,
+    live: "https://github.com/kunal-live/SentriX/releases/latest",
     accent: "orange",
     visual: "monitor",
     featured: false,
-    status: "Production Ready",
+    status: "v1.2.0 Released",
     year: "2026",
     role: "Lead Systems & DevOps Engineer",
     images: {

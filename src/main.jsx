@@ -433,7 +433,7 @@ $ tail -f /var/log/syslog
               <Activity size={11} />
               <span>SentriX · Infrastructure Fleet Observability</span>
             </div>
-            <span className="sentrix-version-chip">C11 + GO CORE</span>
+            <span className="sentrix-version-chip">v1.2.0 • C11 + GO CORE</span>
           </div>
           <div className="sentrix-screen-wrap">
             <img
@@ -442,8 +442,8 @@ $ tail -f /var/log/syslog
               className="sentrix-screen-img"
             />
             <div className="sentrix-quick-stats">
-              <span className="stat-pill">4 Fleet Nodes</span>
-              <span className="stat-pill highlight">Sub-10ms Agent</span>
+              <span className="stat-pill">Fleet Cockpit</span>
+              <span className="stat-pill highlight">v1.2.0 Released</span>
             </div>
           </div>
         </div>
@@ -529,10 +529,10 @@ function ProjectCard({ project, onSelect }) {
               target="_blank"
               rel="noreferrer"
               className="direct-link-btn live"
-              title={project.slug === "nexterm" ? "Download Latest Release on GitHub" : "Open Live Application"}
+              title={project.slug === "nexterm" || project.slug === "sentrix" ? "Download Latest Release on GitHub" : "Open Live Application"}
             >
               <Globe2 size={14} />
-              <span>{project.slug === "nexterm" ? "Latest Release" : "Live Demo"}</span>
+              <span>{project.slug === "nexterm" || project.slug === "sentrix" ? "Latest Release" : "Live Demo"}</span>
               <ExternalLink size={12} />
             </a>
           ) : (
