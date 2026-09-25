@@ -115,10 +115,10 @@ export function ProjectDetailPage({ project, allProjects, onBack, dark, onToggle
                 target="_blank"
                 rel="noreferrer"
                 className="header-live-btn"
-                title="Open Live Application"
+                title={project.slug === "nexterm" ? "Download Latest Release on GitHub" : "Open Live Application"}
               >
                 <Globe2 size={15} />
-                <span>Live Demo</span>
+                <span>{project.slug === "nexterm" ? "Latest Release" : "Live Demo"}</span>
                 <ArrowUpRight size={14} />
               </a>
             )}
@@ -135,7 +135,7 @@ export function ProjectDetailPage({ project, allProjects, onBack, dark, onToggle
               {project.live ? (
                 <span className="detail-status-chip live">
                   <span className="live-ping" />
-                  LIVE DEMO AVAILABLE
+                  {project.slug === "nexterm" ? "V1.1.0 RELEASED" : "LIVE DEMO AVAILABLE"}
                 </span>
               ) : project.soon ? (
                 <span className="detail-status-chip soon">SOON</span>
@@ -157,7 +157,7 @@ export function ProjectDetailPage({ project, allProjects, onBack, dark, onToggle
                   className="primary-hero-btn"
                 >
                   <Globe2 size={17} />
-                  <span>Launch Live Demo</span>
+                  <span>{project.slug === "nexterm" ? "Download Latest Release" : "Launch Live Demo"}</span>
                   <ArrowUpRight size={17} />
                 </a>
               )}
@@ -253,7 +253,7 @@ export function ProjectDetailPage({ project, allProjects, onBack, dark, onToggle
                 )}
                 <span>
                   {project.slug === "nexterm"
-                    ? "NexTerm v1.0.0 — Native Go & Wails v2 Systems Console"
+                    ? "NexTerm v1.1.0 — Native Go & Wails v2 Systems Console"
                     : project.slug === "sentrix"
                     ? "sentrix.internal.cluster — Real-Time Infrastructure Observability Cockpit"
                     : project.slug === "flux"
@@ -459,7 +459,7 @@ root@prod-api-01:~# sftp-sync --status
                   className="primary-action-btn"
                 >
                   <Globe2 size={16} />
-                  <span>Visit Live Demo</span>
+                  <span>{project.slug === "nexterm" ? "Download Latest Release" : "Visit Live Demo"}</span>
                   <ExternalLink size={15} />
                 </a>
               )}

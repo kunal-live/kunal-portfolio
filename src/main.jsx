@@ -254,7 +254,7 @@ function ProjectVisual({ project }) {
               <TerminalSquare size={11} />
               <span>NexTerm — Desktop Systems Workspace</span>
             </div>
-            <span className="nexterm-version-chip">v1.0.0 · DESKTOP</span>
+            <span className="nexterm-version-chip">v1.1.0 · DESKTOP</span>
           </div>
           <div className="nexterm-screen-wrap">
             <img
@@ -529,10 +529,10 @@ function ProjectCard({ project, onSelect }) {
               target="_blank"
               rel="noreferrer"
               className="direct-link-btn live"
-              title="Open Live Application"
+              title={project.slug === "nexterm" ? "Download Latest Release on GitHub" : "Open Live Application"}
             >
               <Globe2 size={14} />
-              <span>Live Demo</span>
+              <span>{project.slug === "nexterm" ? "Latest Release" : "Live Demo"}</span>
               <ExternalLink size={12} />
             </a>
           ) : (

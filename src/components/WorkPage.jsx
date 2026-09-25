@@ -195,7 +195,7 @@ export function WorkPage({ onSelectProject, onBack, GITHUB = "https://github.com
                     </h2>
                     {project.live && (
                       <span className="live-status-pill">
-                        <span className="live-status-dot" /> Live Web App
+                        <span className="live-status-dot" /> {project.slug === "nexterm" ? "v1.1.0 Released" : "Live Web App"}
                       </span>
                     )}
                   </div>
@@ -250,10 +250,10 @@ export function WorkPage({ onSelectProject, onBack, GITHUB = "https://github.com
                         target="_blank"
                         rel="noreferrer"
                         className="work-icon-action live"
-                        title="Launch Live Application"
+                        title={project.slug === "nexterm" ? "Download Latest Release on GitHub" : "Launch Live Application"}
                       >
                         <Globe2 size={16} />
-                        <span>Live Demo</span>
+                        <span>{project.slug === "nexterm" ? "Latest Release" : "Live Demo"}</span>
                         <ExternalLink size={13} />
                       </a>
                     )}

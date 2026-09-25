@@ -59,11 +59,11 @@ export const projects = [
       "NexTerm re-imagines the developer and system administrator terminal experience into a cohesive desktop workspace. Powered by a native Go engine and Wails v2 bridging directly to OS-level PTYs and system keychains, it eliminates the clunky friction of switching between standalone SSH clients, separate SFTP transfer tools, and connection managers.",
     details: "Go · Wails v2 · xterm.js",
     repo: "https://github.com/kunal-live/NexTerm",
-    live: null,
+    live: "https://github.com/kunal-live/NexTerm/releases/latest",
     accent: "ink",
     visual: "terminal",
     featured: true,
-    status: "Active Development",
+    status: "v1.1.0 Released",
     year: "2026",
     role: "Lead Systems Architect & Developer",
     metrics: [

@@ -103,12 +103,12 @@ button {
 }
 
 .nav-avatar-icon {
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   object-fit: cover;
   border: 1.5px solid var(--line);
-  background: var(--paper);
+  background: transparent;
   display: inline-block;
   flex-shrink: 0;
   transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.22s ease;
