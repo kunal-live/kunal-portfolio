@@ -221,7 +221,7 @@ export function ContactPage({ onBack, GITHUB = "https://github.com/kunal-live" }
               </a>
 
               <a
-                href="https://www.instagram.com/still.by.kunal/"
+                href="https://www.instagram.com/kunnu.404/"
                 target="_blank"
                 rel="noreferrer"
                 className="social-portal-card"

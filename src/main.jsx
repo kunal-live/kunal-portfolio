@@ -43,6 +43,7 @@ import { AnimatedSignature } from "./components/AnimatedSignature";
 import { FluxMeshVisual } from "./components/FluxMeshVisual";
 
 const GITHUB = "https://github.com/kunal-live";
+const INSTAGRAM = "https://www.instagram.com/kunnu.404/";
 const PROFILE_IMAGE = heroImage;
 
 
@@ -233,7 +234,7 @@ function SocialLinks() {
       <a href={GITHUB} target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={18} /></a>
       <a href="https://www.linkedin.com/in/kunal-jha-dev/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={18} /></a>
       <a href="https://x.com/kunaljha67" target="_blank" rel="noreferrer" aria-label="X"><X size={17} /></a>
-      <a href="https://www.instagram.com/still.by.kunal/" target="_blank" rel="noreferrer" aria-label="Instagram"><Instagram size={18} /></a>
+      <a href={INSTAGRAM} target="_blank" rel="noreferrer" aria-label="Instagram"><Instagram size={18} /></a>
     </div>
   );
 }
@@ -766,7 +767,7 @@ function App() {
                 <a href={GITHUB} target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={18} /></a>
                 <a href="https://www.linkedin.com/in/kunal-jha-dev/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={18} /></a>
                 <a href="https://x.com/kunaljha67" target="_blank" rel="noreferrer" aria-label="X"><X size={17} /></a>
-                <a href="https://www.instagram.com/still.by.kunal/" target="_blank" rel="noreferrer" aria-label="Instagram"><Instagram size={18} /></a>
+                <a href={INSTAGRAM} target="_blank" rel="noreferrer" aria-label="Instagram"><Instagram size={18} /></a>
               </div>
             </div>
           </nav>
@@ -871,7 +872,7 @@ function App() {
                   <div className="about-links">
                     <a href="https://www.linkedin.com/in/kunal-jha-dev/" target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight size={15} /></a>
                     <a href="https://x.com/kunaljha67" target="_blank" rel="noreferrer">X / Twitter <ArrowUpRight size={15} /></a>
-                    <a href="https://www.instagram.com/still.by.kunal/" target="_blank" rel="noreferrer">Instagram <ArrowUpRight size={15} /></a>
+                    <a href={INSTAGRAM} target="_blank" rel="noreferrer">Instagram <ArrowUpRight size={15} /></a>
                   </div>
                 </div>
               </div>

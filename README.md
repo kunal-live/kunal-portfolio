@@ -18,6 +18,7 @@ A modern, high-performance developer portfolio built with React and Vite, featur
   - Direct Email: [kunaljha8990@gmail.com](mailto:kunaljha8990@gmail.com)
   - GitHub: [@kunal-live](https://github.com/kunal-live)
   - LinkedIn: [kunal-jha-dev](https://www.linkedin.com/in/kunal-jha-dev/)
+  - Instagram: [@kunnu.404](https://www.instagram.com/kunnu.404/)
 
 ---
 
