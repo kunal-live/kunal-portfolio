@@ -43,7 +43,7 @@ import { AnimatedSignature } from "./components/AnimatedSignature";
 import { FluxMeshVisual } from "./components/FluxMeshVisual";
 
 const GITHUB = "https://github.com/kunal-live";
-const INSTAGRAM = "https://www.instagram.com/kunnu.404/";
+const INSTAGRAM = "https://www.instagram.com/kunal.4x4/";
 const PROFILE_IMAGE = heroImage;
 
 
