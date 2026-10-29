@@ -31,7 +31,7 @@ A modern, high-performance developer portfolio built with React and Vite, featur
 ### Quick Start
 ```bash
 # Clone the repository
-git clone https://github.com/kunal-gin/kunal-portfolio.git
+git clone https://github.com/kunal-live/kunal-portfolio.git
 
 # Install dependencies
 npm install
