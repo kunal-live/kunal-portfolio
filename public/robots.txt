@@ -26,7 +26,6 @@ Allow: /
 
 # Sitemaps & Canonical
 Sitemap: https://kunaljha.online/sitemap.xml
-Host: https://kunaljha.online
 
 # LLM Entity Reference
 # https://kunaljha.online/llms.txt
