@@ -582,19 +582,19 @@ function App() {
 
   // Synchronize SEO title, description, canonical link, and social tags dynamically
   useEffect(() => {
-    let title = "Kunal Jha — Software Engineer | Distributed Systems & React";
+    let title = "Kunal Jha — Software Engineer | Official Portfolio";
     let description =
-      "Kunal Jha is a Software Engineer specializing in distributed systems, developer tools, high-performance Go/C11 backends, and modern React web applications.";
+      "Official website of Kunal Jha — Software Engineer specializing in distributed systems, developer tools, high-performance Go/C11 backends, and modern React applications in Pune, India.";
     let canonical = "https://kunaljha.online/";
 
     if (activeProject) {
-      title = `${activeProject.title} — ${activeProject.tagline || activeProject.category} | Kunal Jha`;
-      description = activeProject.description || activeProject.longDescription;
+      title = `${activeProject.title} by Kunal Jha — ${activeProject.tagline || activeProject.category}`;
+      description = `${activeProject.description || activeProject.longDescription} Engineered by Kunal Jha.`;
       canonical = `https://kunaljha.online/?project=${activeProject.slug}`;
     } else if (activePage === "work") {
-      title = "Work & Systems Architecture — Kunal Jha";
+      title = "Selected Projects & Systems Architecture — Kunal Jha";
       description =
-        "Explore production software systems, distributed architectures, developer tools, and full-stack projects built by Kunal Jha.";
+        "Explore production software systems, distributed architectures, developer tools, and open-source projects built by Kunal Jha.";
       canonical = "https://kunaljha.online/?page=work";
     } else if (activePage === "stack") {
       title = "Engineering Stack & Technologies — Kunal Jha";
@@ -602,19 +602,19 @@ function App() {
         "Technical stack, languages, frameworks, databases, and architectural tools leveraged by Kunal Jha across distributed backends and frontends.";
       canonical = "https://kunaljha.online/?page=stack";
     } else if (activePage === "experience") {
-      title = "Experience & Engineering Career — Kunal Jha";
+      title = "Experience & Career Journey — Kunal Jha";
       description =
-        "Professional experience, systems engineering journey, open-source milestones, and technical accomplishments of Kunal Jha.";
+        "Professional software engineering experience of Kunal Jha at Avisys Services and independent systems product engineering.";
       canonical = "https://kunaljha.online/?page=experience";
     } else if (activePage === "contact") {
-      title = "Contact & Collaboration — Kunal Jha";
+      title = "Contact Kunal Jha — Software Engineer";
       description =
-        "Get in touch with Kunal Jha for software engineering opportunities, systems architecture consulting, and technical collaboration.";
+        "Get in touch with Kunal Jha in Pune, India for software engineering opportunities, systems architecture, and technical collaboration.";
       canonical = "https://kunaljha.online/?page=contact";
     } else if (activePage === "about") {
-      title = "About Kunal Jha — Software Engineer & Builder";
+      title = "About Kunal Jha — Software Engineer & Systems Architect";
       description =
-        "Personal background, engineering philosophy, and creative pursuits of Software Engineer Kunal Jha.";
+        "Engineering mindset, background, core philosophies, and product direction of Software Engineer Kunal Jha.";
       canonical = "https://kunaljha.online/?page=about";
     }
 
@@ -814,10 +814,13 @@ function App() {
             <section className="hero">
               <div className="hero-left">
                 <div className="eyebrow"><span className="status-dot" /> Available for select engineering work</div>
-                <h1>Software that works <em>under pressure.</em></h1>
+                <h1 className="hero-heading">
+                  <span className="hero-kunal-name">Kunal Jha</span>
+                  Software that works <em>under pressure.</em>
+                </h1>
                 <p className="hero-copy">
                   I’m <strong>Kunal Jha</strong> — a <strong>Software Engineer</strong>{" "}
-                  building backend systems, developer tools, and products that solve concrete problems.
+                  specializing in distributed systems, developer tools, and high-performance backends.
                 </p>
                 <div className="hero-actions">
                   <a className="black-btn" href="#work" onClick={(e) => navigateToPage("work", e)}>View selected work <ArrowDownRight size={17} /></a>

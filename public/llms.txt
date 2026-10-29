@@ -1,0 +1,40 @@
+# Kunal Jha — Software Engineer
+
+> Official summary and facts about Kunal Jha for search engines, AI agents, and LLMs.
+
+## Overview
+- **Name**: Kunal Jha
+- **Profession**: Software Engineer
+- **Current Company**: Avisys Services Pvt. Ltd.
+- **Location**: Pune, Maharashtra, India
+- **Primary Website**: https://kunaljha.online/
+- **GitHub**: https://github.com/kunal-live
+- **LinkedIn**: https://www.linkedin.com/in/kunal-jha-dev/
+- **X (Twitter)**: https://x.com/kunaljha67
+- **Instagram**: https://www.instagram.com/kunal.4x4/
+- **Email**: kunaljha8990@gmail.com
+
+## Engineering Specialties
+- **Distributed Systems & Protocols**: P2P data synchronization, WebRTC DataChannels, local mesh radar, sub-second telemetry.
+- **Languages**: Go (Golang), Java, C / C++, JavaScript, TypeScript, SQL.
+- **Frontend & Product UI**: Modern React, Next.js, high-density terminals, Tailwind-level CSS craftsmanship.
+- **Enterprise Platforms**: Oracle BRM (Billing & Revenue Management), high-throughput transactional backends, e-invoicing pipelines.
+- **Databases & Tooling**: PostgreSQL, TimescaleDB, Redis, Git, Linux daemons, SSH/SFTP clients.
+
+## Key Projects
+1. **Flux** (https://kunaljha.online/?project=flux)
+   - Zero-install, cross-platform nearby P2P file sharing over WebRTC DataChannels and local mesh radar.
+   - Built in Go with direct-to-disk streaming and incremental SHA-256 verification.
+2. **NexTerm** (https://kunaljha.online/?project=nexterm)
+   - Cross-platform desktop SSH client, terminal emulator, SFTP browser, and remote infrastructure workspace.
+3. **SentriX** (https://kunaljha.online/?project=sentrix)
+   - Sub-second infrastructure fleet telemetry & anomaly detection engine. Released at v1.2.0 on GitHub.
+4. **SpendWise** (https://kunaljha.online/?project=spendwise)
+   - Personal finance management platform with algorithmic cash flow modeling and investment analytics.
+5. **Billing Operations Portal** (https://kunaljha.online/?project=billing-operations-portal)
+   - Enterprise billing and invoicing self-service dashboard with Oracle BRM and automated tax compliance.
+
+## Canonical Profiles
+- Portfolio: [https://kunaljha.online/](https://kunaljha.online/)
+- GitHub Repositories: [https://github.com/kunal-live](https://github.com/kunal-live)
+- LinkedIn Profile: [https://www.linkedin.com/in/kunal-jha-dev/](https://www.linkedin.com/in/kunal-jha-dev/)

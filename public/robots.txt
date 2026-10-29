@@ -1,8 +1,33 @@
 User-agent: *
 Allow: /
 
-# Sitemaps
-Sitemap: https://kunaljha.online/sitemap.xml
+# Search Crawlers
+User-agent: Googlebot
+Allow: /
 
-# Canonical Host
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# AI Search & LLM Discovery Crawlers (GEO)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# Sitemaps & Canonical
+Sitemap: https://kunaljha.online/sitemap.xml
 Host: https://kunaljha.online
+
+# LLM Entity Reference
+# https://kunaljha.online/llms.txt
+
